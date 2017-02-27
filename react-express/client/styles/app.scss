@@ -1,0 +1,158 @@
+html,body{
+    height: 100%;
+    width:100%;
+    background: #faaffa;  /* 没有及时刷新  说明还有问题   html改变  都还没有 */
+};
+
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+ul,li{
+    list-style: none;
+}
+
+
+// Header.scss
+.header{
+    display: flex;
+    height: 44px;
+    background: #ffffff;
+    border-bottom: 1px solid #cccccc;
+    
+    span:nth-child(1),span:nth-child(3) {
+        width: 60px;
+        line-break: 44px;
+        line-height: 44px;
+        text-align: center;
+    }
+    span:nth-child(2){
+        flex: 1;
+        color: #333333;
+        line-height: 44px;
+        font-size: 18px;
+        text-align: center;
+    }
+}
+
+
+.tabel{
+    display: flex;
+    justify-content: space-around;
+    background: #ffffff;
+    height: 55px;
+    align-items: stretch;
+    border-bottom: 1px solid #cccccc;
+    margin-bottom: -1px;
+    position: relative;
+    z-index: 1;
+    
+    
+    .active{
+        color: red;
+        
+        border-bottom: 2px solid red;
+    }
+    
+    div{
+        height: 55px;
+        padding: 26px 0 14px; 
+        width: 25%;
+        font-size: 14px;
+        text-align: center;
+       
+    }
+}
+
+
+.commuser{
+    display:  flex;
+    flex-direction: column;
+    background: #ffffff;   
+    padding-left: 16px;
+    
+    
+    
+    >div{ padding-right: 16px; }
+    .user-baic{
+        display: flex;
+        border-top: 1px solid #cccccc;
+        padding-top: 15px;
+       
+        
+
+        >span:nth-child(1){
+            width: 45px;
+            height: 31px;
+            padding-right:14px ;
+            img{
+                width: 31px;
+                height: 31px;
+                border:0;
+                border-radius: 100%;
+                background: red;
+            }
+        }
+        
+        >span:nth-child(2){
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            
+            h3{
+                height: 22px;
+                font-weight: 100;
+                font-size: 15px;
+                line-height: 15px;
+                color: #242424;
+                padding-bottom: 7px;
+            }
+            span{
+                font-size: 11px;
+                height: 11px;
+                color: #b4b4b4;
+            }
+        }
+        >span:nth-child(3){
+            width: 100px;
+            display: flex;
+            height: 12px;
+            
+            span{
+                width: 20px;
+                height: 12px;
+                padding-right: 8px;
+                i{
+                    display: block;
+                    width: 12px;
+                    background: red;
+                    height: 12px;
+                }   
+            }
+            
+        }
+        
+    }
+    .content{
+        padding: 15px 0;
+        font-size: 14px;
+        color: #8b8b8b;
+    }
+    .picList{
+        padding-bottom: 15px;
+        display: flex;
+        justify-content: space-between;
+        
+        img{
+            height: 75px;
+            width: 75px;
+            border-radius: 5px;
+            background: red;
+        }
+    }
+}
