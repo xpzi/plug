@@ -1,7 +1,30 @@
-##  目录说明
+# react-express Demo
+
+react服务端渲染，解决前后端分离seo优化问题。
+
+### 使用
+
+	- 安装依赖
+
+		cnpm i
+
+	- 安装nodemon服务端热启动工具
+
+		cnpm i nodemon -g
+
+	- 运行项目
+
+		npm run mon
+
+	- 在浏览器访问  
+
+		http://localhost:3030
 
 
-	myapp1
+
+
+###  目录说明
+	react-express
 		|-bin   	启动脚本
 		|-dist		发布目录
 			|-js		js文件
