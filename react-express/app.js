@@ -1,41 +1,33 @@
 var express = require('express');
 var path = require('path');
-var consolidate = require('consolidate');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var index = require('./server/routes/index');
-var users = require('./server/routes/users');
+var proxy = require('express-http-proxy');
+var template = require('art-template');
+
+
+
+
 
 var app = express();
-require('node-jsx-babel').install({extension: '.jsx'});
-// view engine setup
-app.engine('html', consolidate.ejs);
+
+//配置服务器代理 解决跨域问题
+app.use('/7gzapi', proxy('www.7gz.com'));
+app.use('/search.7gzapi', proxy('search.7gz.com'));
+app.use('/m.7gzapi', proxy('m.7gz.com'));
+
+/* 配置模版引擎为 artTemplate */
+template.config("escape", false);
+template.config('extname', '.html');
+app.engine('.html', template.__express);
 app.set('view engine', 'html');
-app.set('views', path.resolve(__dirname, './server/views/'));
+app.set('views', __dirname + '/server/views');
 
-
- // static assets served by webpack-dev-middleware & webpack-hot-middleware for development
-var webpack = require('webpack'),
-    webpackDevMiddleware = require('webpack-dev-middleware'),
-    webpackHotMiddleware = require('webpack-hot-middleware'),
-    webpackDevConfig = require('./webpack.config.js');
-
-var compiler = webpack(webpackDevConfig);
-
-// attach to the compiler & the server
-app.use(webpackDevMiddleware(compiler, {
-    // public path should be the same with webpack config
-    publicPath: webpackDevConfig.output.publicPath,
-    noInfo: true,
-    stats: {
-        colors: true
-    }
-}));
-app.use(webpackHotMiddleware(compiler));
-
+require('./webpackMiddleware.config.js')(app);
+require('./server/routes/index.js')(app);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -43,13 +35,11 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'dist')));
-//
-// 默认pc
-app.use('/', index);
-// m： 手机
-// app: app
-app.use('/users', users);
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'dist', 'static')));
+
+
+
 
 
 module.exports = app;

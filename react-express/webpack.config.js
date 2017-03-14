@@ -1,59 +1,95 @@
-var webpack = require('webpack');
 var path = require('path');
-var ET = require('extract-text-webpack-plugin');
+var webpack = require('webpack');
+// var HtmlWebpackPlugin = require('html-webpack-plugin') ;
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var DashboardPlugin = require('webpack-dashboard/plugin');
 
-var publicPath = 'http://localhost:3030/';
+var Webpack_isomorphic_tools_plugin = require('webpack-isomorphic-tools/plugin');
+var webpack_isomorphic_tools_plugin = new Webpack_isomorphic_tools_plugin(
+	require('./webpack-isomorphic-tools-config.js')).development();
+
+var publicPath = 'http://localhost:3000/';
 var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
+var extractSass = new ExtractTextPlugin({
+    filename: "css/[name].css"
+});
+
 
 module.exports = {
-	
-	//入口   配置
+	context: path.resolve(__dirname),
 	entry: {
-		app: [__dirname+ '/client/enter/app.jsx' , hotMiddlewareScript],
-		list: [__dirname+ '/client/enter/list.jsx' , hotMiddlewareScript]
+		app: ['./client/enter/app.js', hotMiddlewareScript]
 	},
 
-	
-	//出口 输出配置
 	output: {
-		path: path.resolve(__dirname, './dist'),
-		filename: './js/[name].js',
-		publicPath: publicPath
+		filename: 'js/[name].js',
+    	path: path.resolve(__dirname, 'dist'),
+    	publicPath: publicPath
+	},
+
+	module: {
+		rules: [
+			{
+				test: /\.(js|jsx)$/,
+				loader: 'babel-loader'
+			},
+			{
+				test: /\.scss$/,
+				use:  extractSass.extract({
+	                use: [{
+	                    loader: "css-loader"
+	                }, {
+	                    loader: "sass-loader"
+	                }],
+	                fallback: "style-loader"
+	            })
+			},
+			{
+		        test: webpack_isomorphic_tools_plugin.regular_expression('images'),
+		        use: ['url-loader?limit=10240&name=images/[name].[ext]?[hash]']
+		    }
+		]
 	},
 	
-	// sourcemap
-	devtool: 'source-map',
-	
-	//模块配置
-	module:{
-		loaders:[{
-			test: /\.scss$/,
-//			loader: 'style!css!sass'  		//style!css不能交换位置
-			loader: ET.extract('style','css!sass')
-		},{
-			test: /\.css$/,
-			loader: 'style!css'  		//style!css不能交换位置
-		},{
-			test:/\.js$/,
-			exclude: /node_modues/,
-			loader: 'babel'
-		},{
-			test:/\.jsx$/,
-			exclude: /node_modues/,
-			loader: 'babel'
-		},{
-			test:/\.html/,
-			loader:'string'
-		}]
-	},
-	
-	
-	//插件
 	plugins: [
-		//版本号控制需要的
-		 new ET("./css/[name].css" ),
-		 new webpack.HotModuleReplacementPlugin(),
-		 new webpack.optimize.OccurenceOrderPlugin(),
-		 new webpack.NoErrorsPlugin()
+		/*  配置公共js */
+		// new webpack.optimize.CommonsChunkPlugin({
+  //           name: 'vendors'
+  //       }),
+
+
+        /* css 抽离插件 */
+        extractSass,
+        /* 用于文件抽离 */
+        webpack_isomorphic_tools_plugin,
+
+		/* 压缩js 插件   不能再开发过程中使用   */
+		// new webpack.optimize.UglifyJsPlugin({
+		//     compress: {
+		// 	    warnings: false,
+		// 	    drop_console: false,
+		//     }
+		// }),
+
+        /*  html抽离   抽离出来独立运行  不能再开发过程中使用 */
+       	// new HtmlWebpackPlugin({
+       	// 	template: path.join(__dirname, './client/html/index.html'),
+       	// 	filename: path.join(__dirname, './server/views/demo.html'),
+       	// }),
+
+
+		/* 热更新需要的 */
+		new DashboardPlugin(),
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.NamedModulesPlugin(),
+		new webpack.DllReferencePlugin({
+	    	context: __dirname,
+	    	manifest: require('./dist/vendor-manifest.json')
+	    }),
+	    /* 用于文件抽离 */
+        webpack_isomorphic_tools_plugin
+
 	]
+
+
 }
