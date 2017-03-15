@@ -23,9 +23,15 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
-var reload = require('reload');
 var server = http.createServer(app);
-reload(server, app);
+
+console.log('--->www:' ,process.env.NODE_ENV );
+// 开发时候使用 reload重新加载
+if( process.env.NODE_ENV == 'development' ){
+    var reload = require('reload');
+    reload(server, app);
+}
+
 
 /**
  * Listen on provided port, on all network interfaces.

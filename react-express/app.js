@@ -7,10 +7,7 @@ var bodyParser = require('body-parser');
 
 var proxy = require('express-http-proxy');
 var template = require('art-template');
-
-
-
-
+global.isDev = process.env.NODE_ENV == 'development' &&  process.env.PRODU != 'production';
 
 var app = express();
 
@@ -24,22 +21,31 @@ template.config("escape", false);
 template.config('extname', '.html');
 app.engine('.html', template.__express);
 app.set('view engine', 'html');
-app.set('views', __dirname + '/server/views');
-
-require('./webpackMiddleware.config.js')(app);
-require('./server/routes/index.js')(app);
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'dist', 'static')));
 
 
 
+// 是开发模式
+if( isDev ){
+	app.set('views', __dirname + '/client/html');
+	require('./webpackMiddleware.config.js')(app);
+	require('./server/routes/index.js')(app);
+	app.use(logger('dev'));
+	app.use(bodyParser.json());
+	app.use(bodyParser.urlencoded({ extended: false }));
+	app.use(cookieParser());
+	app.use(express.static(path.join(__dirname, 'public')));
+	app.use(express.static(path.join(__dirname, 'dist', 'lib')));
+}else{
+	app.set('views', __dirname + '/server/views');
+	require('./server/routes/index.js')(app);
+	app.use(logger('dev'));
+	app.use(bodyParser.json());
+	app.use(bodyParser.urlencoded({ extended: false }));
+	app.use(cookieParser());
+	app.use(express.static(path.join(__dirname, 'dist')));
+	app.use(express.static(path.join(__dirname, 'dist', 'lib')));
+}
 
-
+// console.log('--->app:' ,process.env.NODE_ENV );
+// console.log('--->PRODU:' ,process.env.PRODU );
 module.exports = app;

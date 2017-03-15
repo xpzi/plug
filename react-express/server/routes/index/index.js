@@ -1,24 +1,20 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-// import Html from './html.js';
-
 
 var myfetch = require('../../utils/myfetch.js');
 var async = require('async');
 var express = require('express');
 var router = express.Router();
+var page = require('../../utils/enter.js');
 
 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	console.log( global._development_ );
-
 	if (global._development_)
 	{
 		webpack_isomorphic_tools.refresh()
 	}
-
 	async.parallel({
 		chief_list_star(callback){
 			var reqData = {
@@ -28,7 +24,7 @@ router.get('/', function(req, res, next) {
 	                "city": 'bj',
 	                "star_type": 2
 	            },   
-	            "pagesize": 10
+	            "pagesize": 20
           	};
           	myfetch.postJson('http://search.7gz.com/Api',reqData, callback);
 		},
@@ -39,13 +35,14 @@ router.get('/', function(req, res, next) {
 
 			data.assets = webpack_isomorphic_tools.assets();
 			global.initData = data;
-			var App = React.createFactory( require('../../../client/enter/app.js') );
+			var App = React.createFactory( page.app );
 			var initHTML  = ReactDOMServer.renderToString( App() );
 			res.render('index', { 
 				title: 'Express', 
 				initData: JSON.stringify( data) , 
 				data: initHTML,
-				name: 'gggggggggggg'
+				name: 'gggggggggggg',
+				isDev: global.isDev
 			});
 		}
 	})

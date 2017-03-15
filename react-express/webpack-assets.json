@@ -1,16 +1,14 @@
 {
   "javascript": {
-    "app": "http://localhost:3000/js/app.js"
+    "app": "http://localhost:3000/js/app-d9afaffdc1cc570a7863.js",
+    "vendors": "http://localhost:3000/js/vendors-675639a806bf588ac79d.js"
   },
   "styles": {
-    "app": "http://localhost:3000/css/app.css"
+    "app": "http://localhost:3000/css/app-4bcc8151607de78e1c1eabf8196e8de5.css"
   },
   "assets": {
-    "./client/images/a.jpg": "http://localhost:3000/images/a.jpg?315c2f5925a42be246ecddf11d4efe8c",
-    "./client/images/b.jpg": "http://localhost:3000/images/b.jpg?055461f5f3577141138809bbbf77d60c",
-    "./client/images/c.jpg": "http://localhost:3000/images/c.jpg?f3f8ed126d23a8d5a949548255bcdfba",
-    "./client/script/a.jpg": "http://localhost:3000/images/a.jpg?315c2f5925a42be246ecddf11d4efe8c",
-    "./client/script/b.jpg": "http://localhost:3000/images/b.jpg?055461f5f3577141138809bbbf77d60c",
-    "./client/script/c.jpg": "http://localhost:3000/images/c.jpg?f3f8ed126d23a8d5a949548255bcdfba"
+    "./client/script/home.scss": {
+      "_style": "html, body {\n  background: #aa5599; }\n"
+    }
   }
 }

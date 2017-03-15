@@ -1,28 +1,52 @@
 var path = require('path');
 var webpack = require('webpack');
-// var HtmlWebpackPlugin = require('html-webpack-plugin') ;
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var DashboardPlugin = require('webpack-dashboard/plugin');
-
+var HtmlWebpackPlugin = require('html-webpack-plugin') ;
 var Webpack_isomorphic_tools_plugin = require('webpack-isomorphic-tools/plugin');
 var webpack_isomorphic_tools_plugin = new Webpack_isomorphic_tools_plugin(
 	require('./webpack-isomorphic-tools-config.js')).development();
-
+var isDev = process.env.NODE_ENV == 'development';
 var publicPath = 'http://localhost:3000/';
-var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 var extractSass = new ExtractTextPlugin({
-    filename: "css/[name].css"
+    filename:  isDev ? "css/[name].css" : "css/[name]-[contenthash].css"
 });
+
+
+
+console.log('------->initPlugins:' ,process.env.NODE_ENV );
+function initPlugins(){	
+	switch(process.env.NODE_ENV){
+		case 'development': 
+			return devPlugins();
+			break;
+		case 'build': 
+			return buildPlugin();
+			break;
+	}
+	return [];
+}
+
+
+function pacgEnter( enter ){
+	var hotMiddlewareScript =  'webpack-hot-middleware/client?reload=true';
+	if( process.env.NODE_ENV != 'build' ){
+		for( var name in enter ){
+			enter[name].push(hotMiddlewareScript);
+		}
+	}
+	return enter;
+}
 
 
 module.exports = {
 	context: path.resolve(__dirname),
-	entry: {
-		app: ['./client/enter/app.js', hotMiddlewareScript]
-	},
+	entry: pacgEnter({
+		app: ['./client/enter/app.js']
+	}),
 
 	output: {
-		filename: 'js/[name].js',
+		filename: isDev ? 'js/[name].js' : 'js/[name]-[chunkhash].js',
     	path: path.resolve(__dirname, 'dist'),
     	publicPath: publicPath
 	},
@@ -46,50 +70,69 @@ module.exports = {
 			},
 			{
 		        test: webpack_isomorphic_tools_plugin.regular_expression('images'),
-		        use: ['url-loader?limit=10240&name=images/[name].[ext]?[hash]']
+		        use: ['url-loader?limit=10240&name=images/[name]-[hash].[ext]']
 		    }
 		]
-	},
-	
-	plugins: [
-		/*  配置公共js */
-		// new webpack.optimize.CommonsChunkPlugin({
-  //           name: 'vendors'
-  //       }),
+	},	
+	plugins: initPlugins()
+
+}
 
 
-        /* css 抽离插件 */
+
+function devPlugins(){
+	return [
+		new webpack.optimize.CommonsChunkPlugin({
+	        name: 'vendors'
+	    }),
+
+		/* 文件抽离 样式，图片等 */
         extractSass,
-        /* 用于文件抽离 */
         webpack_isomorphic_tools_plugin,
-
-		/* 压缩js 插件   不能再开发过程中使用   */
-		// new webpack.optimize.UglifyJsPlugin({
-		//     compress: {
-		// 	    warnings: false,
-		// 	    drop_console: false,
-		//     }
-		// }),
-
-        /*  html抽离   抽离出来独立运行  不能再开发过程中使用 */
-       	// new HtmlWebpackPlugin({
-       	// 	template: path.join(__dirname, './client/html/index.html'),
-       	// 	filename: path.join(__dirname, './server/views/demo.html'),
-       	// }),
-
-
-		/* 热更新需要的 */
-		new DashboardPlugin(),
+        new DashboardPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NamedModulesPlugin(),
+
+		/* dll库方法使用案例 */
 		new webpack.DllReferencePlugin({
 	    	context: __dirname,
-	    	manifest: require('./dist/vendor-manifest.json')
+	    	manifest: require('./dist/lib/vendor-manifest.json')
+	    })
+	];
+}
+
+
+function buildPlugin(){
+	return [
+		new DashboardPlugin(),
+		new webpack.NamedModulesPlugin(),
+		/* dll库方法使用案例 */
+		new webpack.DllReferencePlugin({
+	    	context: __dirname,
+	    	manifest: require('./dist/lib/vendor-manifest.json')
 	    }),
-	    /* 用于文件抽离 */
-        webpack_isomorphic_tools_plugin
-
-	]
-
-
+		/*  抽离公共部分的js  可以多个 */
+		new webpack.optimize.CommonsChunkPlugin({
+	        name: 'vendors'
+	    }),
+		/* 文件抽离 样式，图片等 */
+        extractSass,
+        webpack_isomorphic_tools_plugin,
+        /* 打包html可以多个 */
+	   	new HtmlWebpackPlugin({
+	   		template: path.join(__dirname, './client/html/index.html'),
+	   		filename: path.join(__dirname, './server/views/index.html'),
+	   	}),
+	   	new HtmlWebpackPlugin({
+	   		template: path.join(__dirname, './client/html/demo.html'),
+	   		filename: path.join(__dirname, './server/views/demo.html'),
+	   	}),
+	    /* 压缩js  */
+		new webpack.DefinePlugin({
+      		'process.env': {
+	        	NODE_ENV: JSON.stringify('production')
+	    	}
+	    }),
+	  	new webpack.optimize.UglifyJsPlugin()	
+	];
 }
