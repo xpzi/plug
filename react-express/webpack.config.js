@@ -1,13 +1,14 @@
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 var DashboardPlugin = require('webpack-dashboard/plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin') ;
 var Webpack_isomorphic_tools_plugin = require('webpack-isomorphic-tools/plugin');
 var webpack_isomorphic_tools_plugin = new Webpack_isomorphic_tools_plugin(
 	require('./webpack-isomorphic-tools-config.js')).development();
 var isDev = process.env.NODE_ENV == 'development';
-var publicPath = 'http://localhost:3000/';
+var publicPath = 'http://yangjinp.vicp.cc/';//'http://localhost:3000/';
 var extractSass = new ExtractTextPlugin({
     filename:  isDev ? "css/[name].css" : "css/[name]-[contenthash].css"
 });
@@ -42,7 +43,8 @@ function pacgEnter( enter ){
 module.exports = {
 	context: path.resolve(__dirname),
 	entry: pacgEnter({
-		app: ['./client/enter/app.js']
+		app: ['./client/enter/app.js'],
+		home: ['./client/enter/home.js']
 	}),
 
 	output: {
@@ -50,12 +52,21 @@ module.exports = {
     	path: path.resolve(__dirname, 'dist'),
     	publicPath: publicPath
 	},
-
+	devtool: 'source-map',
 	module: {
 		rules: [
 			{
 				test: /\.(js|jsx)$/,
 				loader: 'babel-loader'
+			},
+			{
+				test: /\.css$/,
+				use:  extractSass.extract({
+	                use: [{
+	                    loader: "css-loader"
+	                }],
+	                fallback: "style-loader"
+	            })
 			},
 			{
 				test: /\.scss$/,
@@ -97,6 +108,10 @@ function devPlugins(){
 		new webpack.DllReferencePlugin({
 	    	context: __dirname,
 	    	manifest: require('./dist/lib/vendor-manifest.json')
+	    }),
+	    new webpack.DllReferencePlugin({
+	    	context: __dirname,
+	    	manifest: require('./dist/lib/plugin-manifest.json')
 	    })
 	];
 }
@@ -111,21 +126,30 @@ function buildPlugin(){
 	    	context: __dirname,
 	    	manifest: require('./dist/lib/vendor-manifest.json')
 	    }),
+	    new webpack.DllReferencePlugin({
+	    	context: __dirname,
+	    	manifest: require('./dist/lib/plugin-manifest.json')
+	    }),
 		/*  抽离公共部分的js  可以多个 */
 		new webpack.optimize.CommonsChunkPlugin({
-	        name: 'vendors'
+	        name: 'vendors',
+            chunks: ['app', 'home'],
+            minChunks: 2
 	    }),
 		/* 文件抽离 样式，图片等 */
         extractSass,
+        new OptimizeCssAssetsPlugin(),
         webpack_isomorphic_tools_plugin,
         /* 打包html可以多个 */
 	   	new HtmlWebpackPlugin({
 	   		template: path.join(__dirname, './client/html/index.html'),
 	   		filename: path.join(__dirname, './server/views/index.html'),
+	   		chunks: ['vendors','app']
 	   	}),
 	   	new HtmlWebpackPlugin({
-	   		template: path.join(__dirname, './client/html/demo.html'),
-	   		filename: path.join(__dirname, './server/views/demo.html'),
+	   		template: path.join(__dirname, './client/html/home.html'),
+	   		filename: path.join(__dirname, './server/views/home.html'),
+	   		chunks: ['vendors','home']
 	   	}),
 	    /* 压缩js  */
 		new webpack.DefinePlugin({

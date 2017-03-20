@@ -1,5 +1,5 @@
 {
-  "presets": ["react", "es2015"],
+  "presets": ["react", "es2015","stage-0"],
   "ignore":[
         "jquery.js",
         "jquery.min.js",
@@ -7,5 +7,7 @@
         "angular.min.js",
         "bootstrap.js",
         "bootstrap.min.js"
-    ]
+    ],
+  "plugins": [
+  ]
 }
