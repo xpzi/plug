@@ -1,0 +1,49 @@
+@charset "utf-8";
+@import '../../../init.scss';
+
+
+.ad{
+	width: 100%;
+	position: relative;
+
+	&.hide{
+		display: none;
+	}
+
+	.adcontent{
+		img{
+			width: 100%;
+			height: auto;
+		}
+	}
+
+	.adlabel{
+		padding: .03rem .05rem;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		color: #ffffff;
+		line-height: .1rem;
+		font-size: .06rem;
+		background: rgba(0,0,0,0.5);
+		font-family: 'Microsoft Yahei';
+	}
+
+	.clear{
+		position: absolute;
+	    top: 0;
+	    right: 0;
+	    display: block;
+	    width: .2rem;
+	    height: .2rem;
+	    line-height: .2rem;
+	    text-align: center;
+	    font-size: 0.12rem;
+	    color: #fff;
+	    background: rgba(0,0,0,0.6);
+	    z-index: 99;
+	}
+
+
+}
+

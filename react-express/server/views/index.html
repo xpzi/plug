@@ -3,7 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>home </title>
-<link href="http://localhost:3000/css/app.css" rel="stylesheet"><link href="http://localhost:3000/css/app-4bcc8151607de78e1c1eabf8196e8de5.css" rel="stylesheet"></head>
+
+{{if isDev}}
+	<link rel="stylesheet" href="css/app.css">
+{{/if}}
+
+</head>
 <body>
 	
 	<h1>{{ title }}</h1>
@@ -14,13 +19,14 @@
 		var initData = {{ initData }};
 	</script>
 
-	<script src="vendor.dll.js"></script>
 
+<script src="vendor.dll.js"></script>
+<script src="plugin.dll.js"></script>
 {{if isDev}}
 	<script src="/reload/reload.js"></script>
     <script type="text/javascript" src="js/vendors.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
 {{/if}}
 
-<script type="text/javascript" src="http://localhost:3000/js/vendors-675639a806bf588ac79d.js"></script><script type="text/javascript" src="http://localhost:3000/js/app-d9afaffdc1cc570a7863.js"></script></body>
+<script type="text/javascript" src="http://127.0.0.1:1314/js/vendors-5765cbfc881d4bcf2b47.js"></script></body>
 </html>

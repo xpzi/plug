@@ -1,12 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
+const dllEnter = require('./config/dll-config.js');
 
 // console.log( process.env.NODE_ENV );
 
 module.exports = {
-  entry: {
-    vendor: ['react', 'react-dom']
-  },
+  entry: dllEnter,
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'lib/[name].dll.js',

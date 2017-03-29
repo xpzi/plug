@@ -1,0 +1,425 @@
+@charset "utf-8";
+@import '../../init.scss';
+
+
+.home{
+	height: 100%;
+	overflow-y: scroll;
+	background: #ffffff;
+
+
+	
+
+	.kjan {
+
+		@include flexbox();
+		@include flex-wrap(wrap);
+		width: 100%;
+		background:#f2f2f2;
+		padding: .06rem 0;
+		div{
+			width: 50%;
+			.kjan-item{
+				width: 100%;
+				padding: .12rem 0;
+				background:#ffffff;
+				@include flexbox();
+				@include align-items(center);
+				@include justify-content(center);
+				font-size: .12rem;
+			
+				&:nth-child(odd){
+					@include border( 0 1px 1px 0, #cccccc, solid );
+				}
+				&:nth-child(even){
+					@include border( 0 0 1px 0, #cccccc, solid );
+				}
+				img{
+					height: .2rem;
+					width: auto;
+				}
+				span{ padding: 0 3px;  color: #333;}
+			}
+		}
+	}
+
+	.anli{
+		width: 100%;
+		padding-bottom: .1rem;
+		background:#f2f2f2;
+
+		.anlititle{
+			width: 100%;
+			padding: .08rem 0;
+			background:#fff;
+			@include border(0 0 1px 0, #999,solid);
+			@include flexbox();
+			@include justify-content(space-between);
+			@include align-items(center);  
+
+			h3{
+				border-left: 5px  #ff9000  solid ;
+				padding:.01rem 0 .01rem .15rem;
+				color: #333;
+				font-size: .14rem;
+			}
+			em{
+				background:url('http://static.jiaju.com/jiaju/com/m7gz/assets/images/m-emMore-bg.png') no-repeat 0 center;
+				background-size: contain;
+				padding: .08rem;
+			}
+
+			>div{
+				height: 100%;
+				@include flex();
+				@include justify-content(flex-end);
+				@include flexbox();
+				@include align-items(center);
+				span{
+					height: .18rem;
+					padding: 0 .05rem;
+					@include justify-content(center);
+					@include flexbox();
+					@include align-items(stretch);
+					i{
+						position: relative;
+						top: .05rem;
+						font-size: 12px;
+						font-weight: 600;
+
+						&.action{
+							@include border(0 0 3px 0, red , solid);
+						}
+					}
+				}
+
+			}
+		}
+
+		.lgtj-item{
+			width: 100%;
+			background:#fff;
+			padding: 0 .16rem 0;
+			@include flexbox();
+			@include flex-direction(column);
+			@include align-items(center);
+			
+			.tj-itembox{
+				width: 100%;
+				
+				
+				@include flexbox();
+				@include flex-wrap(wrap);
+
+				
+				.tj-item{
+					width: 50%;
+					
+					padding-top: .16rem;
+
+					&:nth-child(odd){
+						padding-right: .08rem;
+					}
+					&:nth-child(even){
+						padding-left: .08rem;
+					}
+
+					img{ width: 100%; }
+
+					>div{
+						height: 0;
+						width: 100%;
+						position: relative;
+						span{
+							position: absolute;
+							padding: .08rem 0;
+							text-align: center;
+							background: rgba(0,0,0,0.5);
+							color: #ffffff;
+							width: 100%;
+							bottom: 0;
+							z-index: 998;
+						}
+					}
+				}
+
+			}
+	
+
+			.tj-more{
+				width: 100%;
+				@include border(1px , #ccc , solid, .05rem);
+				background:#fff;
+				padding: .08rem 0;
+				margin: .1rem 0; 
+				text-align: center;
+
+			}
+		}
+
+		.gzanli-item{
+			width: 100%;
+			height: 2.4rem;
+			@include flexbox();
+			
+			a{
+				width: 100%;
+				position: relative;
+
+				>img{
+					width: 100%;
+					height: auto;
+				}
+
+				label{
+
+					position: absolute;
+					top: .2rem;
+					right: .2rem;
+					z-index: 9999;
+					background: rgba(0,0,0,0.5);
+					border-radius: .13rem;
+					padding: .03rem .08rem;
+					font-size: .1rem;
+
+					span{
+						color: #ffffff;
+					}
+					.lanse{
+						color: #aaff66;
+					}
+				}
+
+				.gzinfo{
+					position: absolute;
+					bottom: 0;
+					width: 100%;
+					// height: .6rem;
+					padding: .08rem 0;
+					background:rgba(0,0,0,0.5);
+					div{
+						width: 100%;
+						height:100%;
+						padding: 0 .1rem;
+
+						@include flexbox();
+						@include align-items(center);
+
+						span{
+							padding: 0 .03rem;
+							img{
+								height: .4rem;
+								width: .4rem;
+								border-radius: 100%;
+							}
+
+							h3{
+								color: #ffffff;
+								font-weight: 100;
+								font-size: .14rem;
+							}
+							p{
+								color: #fff;
+								font-weight: 100;
+								font-size: .12rem;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.case{
+		width: 100%;
+
+
+		
+	}
+
+	.abcd{
+		width: 100%;
+		height: 1.06rem;
+
+	}
+	.list{
+		width: 100%;
+		padding-bottom: .1rem;
+		background:#f2f2f2;
+
+		.listtitle{
+			width: 100%;
+			height: .36rem;
+			line-height: .2rem;
+			padding: .08rem 0;
+			background:#fff;
+			@include border(0 0 1px 0, #999,solid);
+
+			@include flexbox();
+			@include justify-content(space-between); 
+
+			h3{
+				border-left: 3px  #ff9000  solid ;
+				padding-left: .15rem;
+				color: #333;
+			}
+			em{
+				background:url('http://static.jiaju.com/jiaju/com/m7gz/assets/images/m-emMore-bg.png') no-repeat 0 center;
+				background-size: contain;
+				padding: .1rem;
+			}
+		}
+		.listbox{
+			width: 100%;
+			background:#fff;
+
+			.listitem{
+				width: 100%;
+				@include flexbox();
+				@include align-items(center);
+				@include border(0 0 1px 0, #ccc , solid );
+				padding: .12rem;
+
+				span{
+					img{
+						width: .8rem;
+						height: auto;
+					}
+
+					h3{  
+						font-size: .14rem;
+						padding: .05rem 0;
+						color: #333333;
+						font-weight: 100;
+
+					}
+					p{
+						font-size: .12rem;
+						// padding:  0;
+						color: #999;
+					}
+					label{
+						position: absolute;
+
+						right: 0;
+						bottom: 0; 
+						background:url('http://static.jiaju.com/jiaju/com/m7gz/assets/images/m-count.png') no-repeat left center;
+						background-size: contain;
+
+						font-size: 12px;
+						color: #999;
+						padding-left: .18rem;
+						height: .1rem;
+						line-height: .11rem;
+
+					}
+					&:nth-child(1){
+						padding-right: .1rem;
+					}
+					&:nth-child(2){
+						flex: 1;
+
+						@include flexbox();
+						@include flex-direction(column);
+						position: relative;
+					}
+
+				}
+			}			
+		}
+	}
+}
+
+.footer{
+	padding: .15rem 0 .7rem;
+	background:#f2f2f2;
+	width: 100%;
+
+	.link{
+		height: .14rem;
+		width: 100%;
+		@include flexbox();
+		@include justify-content(center);
+		a{
+			font-size: 12px;
+			line-height: 14px;
+			color: #777;
+			padding: 0 .03rem;
+		}
+		i{
+			padding-left: 1px;
+			background:#777;
+			font-size: 14px;	
+		}
+
+	}
+	.siteinfo{
+		text-align: center;
+		padding-top: .05rem; 
+		color: #777;
+		font-size: .12rem;
+	}
+
+}
+
+.fixedbottom{
+	position: fixed;
+	@include flexbox();
+	width: 100%;
+	bottom: 0;
+	background:rgba(0,0,0,0.6);
+	z-index: 999999;
+	.con{
+
+		height: .44rem;
+		width: 50%;
+
+		@include flexbox();
+		@include justify-content(center);
+		a{
+			position: relative;
+			top: -.04rem;
+			@include flexbox();
+			@include justify-content(center);
+		}
+
+		span{
+			img{
+				height: .44rem;
+				width: auto;
+			}
+			&:nth-child(2){
+				padding: 0 .05rem;
+			}
+			&:nth-child(2){
+				@include flexbox();
+				@include flex-direction(column);
+			}
+
+			h3{
+				color: #ffd200;
+				padding-top: .08rem;
+				font-weight: 600;
+				font-size: .12rem;
+				line-height: .18rem;
+			}
+
+			p{
+				color: #fff;
+				font-size: .10rem;
+				line-height: .10rem;
+				i{
+					font-style: normal;
+					color: #ffd220;
+					padding: 0 .02rem;
+				}
+			}
+		}
+		
+		&:nth-child(odd){
+			border-right: 1px #333 solid;
+		}
+	}
+
+	
+}

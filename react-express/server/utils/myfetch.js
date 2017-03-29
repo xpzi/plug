@@ -16,20 +16,23 @@ module.exports = {
 
 	get( url, option, callback){
 		var {option, callback} = this._init(option, callback);
-		fetch( url, {
-			method: 'GET',
-			body: JSON.stringify(option)
-		})
+
+
+		fetch( url, option)
 		.then( ( res) => res.text() )
 		.then( (data) => callback('',data));
 	},
 	getJson( url, option, callback ){
+
 		var {option, callback} = this._init(option, callback);
-		fetch( url, {
-			method: 'GET',
-			body: JSON.stringify(option)
-		})
-		.then( ( res) => res.json() )
+		url += '?';
+
+		for(var key in option){
+			url +=  key + '=' + option[key]+ '&';
+		}
+
+		fetch( url, option)
+		.then( ( res) => res.json() )	
 		.then( (data) => callback('',data));
 	},
 

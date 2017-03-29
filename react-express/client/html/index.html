@@ -5,7 +5,7 @@
 	<title>home </title>
 
 {{if isDev}}
-	<link rel="stylesheet" href="css/app.js">
+	<link rel="stylesheet" href="css/app.css">
 {{/if}}
 
 </head>
@@ -19,8 +19,9 @@
 		var initData = {{ initData }};
 	</script>
 
-	<script src="vendor.dll.js"></script>
 
+<script src="vendor.dll.js"></script>
+<script src="plugin.dll.js"></script>
 {{if isDev}}
 	<script src="/reload/reload.js"></script>
     <script type="text/javascript" src="js/vendors.js"></script>

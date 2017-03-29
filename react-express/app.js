@@ -11,7 +11,7 @@ global.isDev = process.env.NODE_ENV == 'development' &&  process.env.PRODU != 'p
 
 var app = express();
 
-//配置服务器代理 解决跨域问题
+//配置服务器代理
 app.use('/7gzapi', proxy('www.7gz.com'));
 app.use('/search.7gzapi', proxy('search.7gz.com'));
 app.use('/m.7gzapi', proxy('m.7gz.com'));
@@ -26,6 +26,26 @@ app.set('view engine', 'html');
 
 // 是开发模式
 if( isDev ){
+	// var Mock = require('mockjs');
+
+	// Mock.mock('http://m.7gz.com', {
+	//     'name'	   : '[@name](/user/name)()',
+	//     'age|1-100': 100,
+	//     'color'	   : '[@color](/user/color)'
+	// });
+	// Mock.mock('http://search.7gz.com', {
+	//     'name'	   : '[@name](/user/name)()',
+	//     'age|1-100': 100,
+	//     'color'	   : '[@color](/user/color)'
+	// });
+	// Mock.mock('http://www.7gz.com', {
+	//     'name'	   : '[@name](/user/name)()',
+	//     'age|1-100': 100,
+	//     'color'	   : '[@color](/user/color)'
+	// });
+
+
+
 	app.set('views', __dirname + '/client/html');
 	require('./webpackMiddleware.config.js')(app);
 	require('./server/routes/index.js')(app);

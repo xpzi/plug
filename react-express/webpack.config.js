@@ -1,3 +1,4 @@
+var fs = require("fs");
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -8,45 +9,17 @@ var Webpack_isomorphic_tools_plugin = require('webpack-isomorphic-tools/plugin')
 var webpack_isomorphic_tools_plugin = new Webpack_isomorphic_tools_plugin(
 	require('./webpack-isomorphic-tools-config.js')).development();
 var isDev = process.env.NODE_ENV == 'development';
-var publicPath = 'http://yangjinp.vicp.cc/';//'http://localhost:3000/';
+
+// 中间件访问的地址
+var publicPath = 'http://127.0.0.1:1314/';//'http://yangjinp.vicp.cc/';//'http://localhost:3000/';
+// css 插件的配置
 var extractSass = new ExtractTextPlugin({
     filename:  isDev ? "css/[name].css" : "css/[name]-[contenthash].css"
 });
 
 
-
-console.log('------->initPlugins:' ,process.env.NODE_ENV );
-function initPlugins(){	
-	switch(process.env.NODE_ENV){
-		case 'development': 
-			return devPlugins();
-			break;
-		case 'build': 
-			return buildPlugin();
-			break;
-	}
-	return [];
-}
-
-
-function pacgEnter( enter ){
-	var hotMiddlewareScript =  'webpack-hot-middleware/client?reload=true';
-	if( process.env.NODE_ENV != 'build' ){
-		for( var name in enter ){
-			enter[name].push(hotMiddlewareScript);
-		}
-	}
-	return enter;
-}
-
-
-module.exports = {
+var webpackConfig={
 	context: path.resolve(__dirname),
-	entry: pacgEnter({
-		app: ['./client/enter/app.js'],
-		home: ['./client/enter/home.js']
-	}),
-
 	output: {
 		filename: isDev ? 'js/[name].js' : 'js/[name]-[chunkhash].js',
     	path: path.resolve(__dirname, 'dist'),
@@ -85,14 +58,74 @@ module.exports = {
 		    }
 		]
 	},	
-	plugins: initPlugins()
-
 }
 
+webpackConfig['entry'] = pacgEnter( entryList('./client/enter/'));
+webpackConfig['plugins'] = initPlugins();
 
 
+
+/*  入口文件自动获取不需要再配置  */
+function entryList(url) {
+	url = path.resolve( url);
+	var filesPath = {};
+	var FolderRecursive = function( ){
+		var files = [];
+		//判断给定的路径是否存在
+		if( fs.existsSync(url) ) {
+			//返回文件和子目录的数组
+			files = fs.readdirSync(url);
+			files.forEach(function(file,index){
+				var curPath = path.join(url,file);
+				var name = file.split('.');
+				name.length = name.length - 1;
+      			name = name.join('.');
+
+				if(fs.statSync(curPath).isDirectory()) { 
+					FolderRecursive(curPath);
+				} else {
+					if(name){
+						filesPath[name] = [curPath];
+					}
+				}
+			});
+		}else{
+			console.log("给定的路径不存在，请给出正确的路径");
+		}
+	}
+	FolderRecursive();
+	return filesPath;
+};
+
+
+
+/*  在开发时怎建热更新功能，生产时则不需要  */
+function pacgEnter( enter ){
+	var hotMiddlewareScript =  'webpack-hot-middleware/client?reload=true';
+	if( process.env.NODE_ENV != 'build' ){
+		for( var name in enter ){
+			enter[name].push(hotMiddlewareScript);
+		}
+	}
+	return enter;
+}
+
+/*  通过传入的变脸使用对应的插件 */
+function initPlugins(){	
+	switch(process.env.NODE_ENV){
+		case 'development': 
+			return devPlugins();
+			break;
+		case 'build': 
+			return buildPlugin();
+			break;
+	}
+	return [];
+}
+
+/*  开发时候的 插件  */
 function devPlugins(){
-	return [
+	return getDll([
 		new webpack.optimize.CommonsChunkPlugin({
 	        name: 'vendors'
 	    }),
@@ -102,55 +135,26 @@ function devPlugins(){
         webpack_isomorphic_tools_plugin,
         new DashboardPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NamedModulesPlugin(),
-
-		/* dll库方法使用案例 */
-		new webpack.DllReferencePlugin({
-	    	context: __dirname,
-	    	manifest: require('./dist/lib/vendor-manifest.json')
-	    }),
-	    new webpack.DllReferencePlugin({
-	    	context: __dirname,
-	    	manifest: require('./dist/lib/plugin-manifest.json')
-	    })
-	];
+		new webpack.NamedModulesPlugin()
+	]);
 }
 
-
+/*  编译时候的 插件  */
 function buildPlugin(){
-	return [
+	return getHtmlPlugin(getDll([
 		new DashboardPlugin(),
 		new webpack.NamedModulesPlugin(),
-		/* dll库方法使用案例 */
-		new webpack.DllReferencePlugin({
-	    	context: __dirname,
-	    	manifest: require('./dist/lib/vendor-manifest.json')
-	    }),
-	    new webpack.DllReferencePlugin({
-	    	context: __dirname,
-	    	manifest: require('./dist/lib/plugin-manifest.json')
-	    }),
 		/*  抽离公共部分的js  可以多个 */
 		new webpack.optimize.CommonsChunkPlugin({
-	        name: 'vendors',
-            chunks: ['app', 'home'],
-            minChunks: 2
+	        name: 'vendors'
+            // chunks: ['app', 'home'],
+            // minChunks: 2
 	    }),
 		/* 文件抽离 样式，图片等 */
         extractSass,
         new OptimizeCssAssetsPlugin(),
         webpack_isomorphic_tools_plugin,
-        /* 打包html可以多个 */
-	   	new HtmlWebpackPlugin({
-	   		template: path.join(__dirname, './client/html/index.html'),
-	   		filename: path.join(__dirname, './server/views/index.html'),
-	   		chunks: ['vendors','app']
-	   	}),
-	   	new HtmlWebpackPlugin({
-	   		template: path.join(__dirname, './client/html/home.html'),
-	   		filename: path.join(__dirname, './server/views/home.html'),
-	   		chunks: ['vendors','home']
-	   	}),
+
 	    /* 压缩js  */
 		new webpack.DefinePlugin({
       		'process.env': {
@@ -158,5 +162,57 @@ function buildPlugin(){
 	    	}
 	    }),
 	  	new webpack.optimize.UglifyJsPlugin()	
-	];
+	]), './client/html', './server/views');
 }
+
+/*  根据dll配置文件生成 dll的使用插件 */
+function getDll(plugin){
+	var dllEnter = require('./config/dll-config.js');
+	for(var  key in dllEnter){
+		/* dll库方法使用案例 */
+		plugin.push(new webpack.DllReferencePlugin({
+	    	context: __dirname,
+	    	manifest: require('./dist/lib/'+key+'-manifest.json')
+	    }));
+	}
+	return plugin;
+}
+
+/*  根据html目录下的文件 自动配置Htmlwebpackplugin */
+function getHtmlPlugin( plugin, url, out ){
+	var FolderRecursive = function( ){
+		var files = [];
+		//判断给定的路径是否存在
+		if( fs.existsSync(url) ) {
+			//返回文件和子目录的数组
+			files = fs.readdirSync(url);
+			files.forEach(function(file,index){
+				var curPath = url + '/'+ file;
+				if(fs.statSync(curPath).isDirectory()) { 
+					FolderRecursive(curPath);
+				} else {
+					var name = file.split('.');
+					name.length = name.length - 1;
+	      			name = name.join('.');
+					if(name){
+						plugin.push(new HtmlWebpackPlugin({
+					   		template: path.join(__dirname, curPath),
+					   		filename: path.join(__dirname, curPath.replace(url, out)),
+					   		chunks: ['vendors',name]
+					   	}))
+					}
+				}
+			});
+		}else{
+			console.log("给定的路径不存在，请给出正确的路径");
+		}
+	}
+	FolderRecursive();
+	return plugin;
+}
+
+
+
+
+
+module.exports = webpackConfig;

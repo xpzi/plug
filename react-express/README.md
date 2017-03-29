@@ -12,7 +12,7 @@ npm start
 
 ## 在浏览器查看
 
-http://localhist:3000
+http://127.0.0.1:1314
 
 
 ## 命令
@@ -21,7 +21,7 @@ http://localhist:3000
 npm run start    	启动开发模式
 npm run build    	打包程序文件
 npm run dll             打包公共库
-npm run pro             生产模式
+npm run prod             生产模式
 /*npm run public		部署文件	*/
 ```
 
@@ -62,9 +62,9 @@ npm run pro             生产模式
 
 - 公共库的打包
 
-	在 webpack.dll.config.js中配置依赖库的名字
+	在 /config/dll-config.js中配置依赖库的名字
 	```
-		entry: {
+		{
 		    react: ['react', 'react-dom'],
 		    pulgin: ['swiper','iscroll']
 		}
@@ -86,14 +86,13 @@ npm run pro             生产模式
 	
 	html模版在client中编写
 	
-	html模版打包配置在webpack.html.config.js中
-	
+
 
 
 - 启动成产环境
 
     ```
-	npm run pro
+	npm run prod
     ```
 
 	server端运行react的方式与开发模式一样

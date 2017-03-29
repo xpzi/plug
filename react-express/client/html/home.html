@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{{ title }} </title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<!-- 必须的 -->
+{{if isDev}}
+	<link rel="stylesheet" href="css/home.css">
+{{/if}}
+
+</head>
+<body>
+
+
+	<div id="app">{{data}}</div>
+
+
+<!--  必须的  -->
+<script> 
+	var initData = {{ initData }};
+</script>
+
+<script src="vendor.dll.js"></script>
+<script src="plugin.dll.js"></script>
+{{if isDev}}
+	<script src="/reload/reload.js"></script>
+    <script type="text/javascript" src="js/vendors.js"></script>
+	<script type="text/javascript" src="js/home.js"></script>
+{{/if}}
+</body>
+</html>

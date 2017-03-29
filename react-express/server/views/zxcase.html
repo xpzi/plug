@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ title }} </title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<!-- 必须的 -->
+{{if isDev}}
+  <link rel="stylesheet" href="css/zxcase.css">
+{{/if}}
+
+<link href="http://127.0.0.1:1314/css/zxcase-68005ad4ab026e519a46b5806797e846.css" rel="stylesheet"></head>
+<body>
+
+
+  <div id="app">{{data}}</div>
+
+
+<!--  必须的  -->
+<script> 
+  var initData = {{ initData }};
+</script>
+
+<script src="vendor.dll.js"></script>
+<script src="plugin.dll.js"></script>
+{{if isDev}}
+  <script src="/reload/reload.js"></script>
+    <script type="text/javascript" src="js/vendors.js"></script>
+  <script type="text/javascript" src="js/zxcase.js"></script>
+{{/if}}
+<script type="text/javascript" src="http://127.0.0.1:1314/js/vendors-5765cbfc881d4bcf2b47.js"></script><script type="text/javascript" src="http://127.0.0.1:1314/js/zxcase-9b2e41cd33dee6f0e7fc.js"></script></body>
+</html>
