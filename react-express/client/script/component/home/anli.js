@@ -10,7 +10,8 @@ class Nav extends React.Component {
 
 		
 		this.state = { 
-			data: this.props.data || null
+			data: this.props.data || null,
+			current: 0
 		};
 	}
 
@@ -44,7 +45,7 @@ class Nav extends React.Component {
         });
 
         return (
-            <Banner id="gzal" pagination={ true }>
+            <Banner id="gzal" pagination={ true }  option={{ pagination: true, id:'gzal'  }}>
                 { items }
             </Banner>
         )
@@ -67,13 +68,27 @@ class Nav extends React.Component {
         });
 
         return (
-            <Banner id="zssj" pagination={ true }>
+            <Banner id="zssj" pagination={ true } option={{ pagination: true, id:'zssj'  }}  >
                 { items }
             </Banner>
         )
     }
 
 
+	changeCurrent(swiper){
+
+		this.setState({
+			current: swiper.activeIndex
+		})
+	}
+
+	clickCurrent(event){
+
+
+
+		this.refs.banner.state.swiper.slideTo(Number( event.currentTarget.dataset.current ));
+
+	}
 
     renderlgtj(data){
 		var items = [];
@@ -96,7 +111,7 @@ class Nav extends React.Component {
 		}
 
         return (
-            <Banner id="lgtj" pagination={ false } >
+            <Banner ref="banner" id="lgtj" pagination={ false }  option={{ pagination: false, id:'lgtj' ,onSlideChangeEnd: this.changeCurrent.bind(this) }} >
                 { items }
             </Banner>
         )
@@ -105,10 +120,10 @@ class Nav extends React.Component {
 
 
 	render() {
-
+		const _this = this;
 		if( this.state.data ) {
 
-			const { moduoID , title, data } = this.state.data;
+			const { moduoID , list ,title, data } = this.state.data;
             const renderkey = 'render'+ moduoID;
 			return  (
 				<div className="anli"> 
@@ -116,13 +131,15 @@ class Nav extends React.Component {
 						<div className="anlititle">
 		                    <h3>{ title.title }</h3>
 		                    <div>
-		                    	<span><i className="action">户型</i></span>
-		                    	<span><i>空间</i></span>
-		                    	<span><i>风格</i></span>
+		                    	{ list.map( (item, index) => {
+		                    		return (
+		                    			<span data-current={index} onClick={ this.clickCurrent.bind(this) } key={index}><i className={  _this.state.current == index ? 'action' : '' }>{item}</i></span>
+		                    		)
+		                    	}) }
 		                    </div>
 		                </div>
 					) : (
-						<a className="anlititle">
+						<a className="anlititle" href={ title.link }  target="_blank">
 		                    <h3>{ title.title }</h3>
 		                    <em></em>
 		                </a>

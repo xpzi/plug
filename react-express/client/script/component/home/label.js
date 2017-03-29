@@ -9,15 +9,19 @@ class Nav extends React.Component {
 
 		const { data = [{
 	        icon: 'http://static.jiaju.com/jiaju/com/m7gz/assets/images/m-nav-09.png',
+	        href:'http://live.leju.com/7gz/bj/',
 	        text: '装修直播'
 	    },{
 	        icon: 'http://static.jiaju.com/jiaju/com/m7gz/assets/images/m-nav-06.png',
+	        href:'http://m.7gz.com/Activity',
 	        text: '最新活动'
 	    },{
 	        icon: 'http://static.jiaju.com/jiaju/com/m7gz/assets/images/m-nav-07.png',
+	        href:'http://m.7gz.com/News',
 	        text: '装修攻略'
 	    },{
 	        icon: 'http://static.jiaju.com/jiaju/com/m7gz/assets/images/m-nav-08.png',
+	        href:'http://m.7gz.com/ServiceIntro/index.html',
 	        text: '服务保障'
 	    }] } = this.props; 
 		

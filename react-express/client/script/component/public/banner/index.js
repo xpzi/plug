@@ -7,14 +7,13 @@ class Banner extends React.Component {
 	
 	constructor(props) {
 		super(props);
-		
-		// this.state =   this.props || ;
-		this.state = {
-			id : this.props.id ,
-			pagination: this.props.pagination || false
+		const option = {
+			id: '',
+			pagination: false
 		}
 
-
+		Object.assign(option, this.props.option );
+		this.state = {option};
 	}
 
 	// 第一次render开始
@@ -27,21 +26,21 @@ class Banner extends React.Component {
 	// 第一次render结束
 	componentDidMount() {
 		if( !Swiper ) return;
+		
+		var option = this.state.option;
 
-		var swiperOption = {};
-		swiperOption['autoplay'] = 5000;
-		swiperOption['loop'] = true;
-		if( this.state.pagination ){
-			swiperOption['pagination'] = '.swiper-pagination';
+
+		if( option.pagination ){
+			option['pagination'] = '.swiper-pagination';
 		}
-		console.log( swiperOption );
+		console.log( option );
 
-		this.state.swiper = new Swiper(  '#' + this.state.id , swiperOption);
+		this.state.swiper = new Swiper(  '#' + option.id , option);
 	}
 
 
 	renderPagination(){
-      if (!this.state.pagination) return false;
+      if (!this.state.option.pagination) return false;
       return React.createElement('div', { className: ['swiper-pagination'].join(' ') });
 
 	};
@@ -50,7 +49,7 @@ class Banner extends React.Component {
 		var self = this;
 		return React.createElement(
         	'div',
-        	{ className: 'swiper-container', id: this.state.id },
+        	{ className: 'swiper-container', id: this.state.option.id },
     		React.createElement(
           		'div',
           		{ className: 'swiper-wrapper' },

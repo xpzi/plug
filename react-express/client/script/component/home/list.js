@@ -26,6 +26,8 @@ class List extends React.Component {
 	    }] } = this.props; 
 		
 		this.state = { data };
+		this.targetLink.bind(this);
+		this.likes.bind(this);
 	}
 
 	// 第一次render开始
@@ -38,18 +40,31 @@ class List extends React.Component {
 
 	}
 
+	// 喜欢按钮
+	likes( event ){
+		event.stopPropagation();
+		var keys = event.currentTarget.dataset.keys.split('**');
+		this.state.data.data[keys[0]][keys[1]].clicks++;
+		this.setState();
+	}
+
+	targetLink( event ){
+		event.stopPropagation();
+		window.open(event.currentTarget.dataset.href);
+	}
 
 	renderList( data ){
+		var _this = this;
 		var arrs = [];
 		for( var key in data ){
 			var item = data[key].map( (it, index) => {
 				return (
-					<div key={it.title} className="listitem">
+					<div onClick={ _this.targetLink } key={it.title} data-href={ it.detail_url }  className="listitem">
 						<span><img src={  it.pic_url ?  imgbiscurl + it.pic_url : 'http://static.jiaju.com/jiaju/com/m7gz/assets/images/m-placeholder-case.png' } alt=""/></span>
 						<span>
 							<h3>{ Tool.stringMax( it.title, 12) }</h3>
 							<p>{Tool.stringMax( it.summary, 28)}</p>
-							<label >
+							<label onClick={ _this.likes.bind(_this)} data-keys={key+ '**'+ index} >
 								<i>{ it.clicks }</i>
 							</label>
 						</span>

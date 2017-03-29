@@ -18,17 +18,17 @@ class Nav extends React.Component {
 		    },{
 		        url: 'http://static.jiaju.com/jiaju/com/m7gz/assets/images/m-nav-03.png',
 		        text: '装修报价',
-		        href: '#',
+		        href: 'http://m.7gz.com/Budget/budget.html?place=1',
 				label: '免费'
 		    },{
 		        url: 'http://static.jiaju.com/jiaju/com/m7gz/assets/images/m-nav-04.png',
 		        text: '上门量房',
-		        href: '#',
+		        href: 'http://m.7gz.com/Apply/index.html?place=2',
 		        label: '免费'
 		    },{
 		        url: 'http://static.jiaju.com/jiaju/com/m7gz/assets/images/appdown_new.png',
 		        text: 'App下载',
-		        href: '#'
+		        href: 'http://m.7gz.com/Download/'
 		    }] } = this.props; 
 		
 		this.state = { data };

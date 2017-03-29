@@ -29,12 +29,12 @@ class Home extends React.Component {
 
     renderBanner( focus ){
         return (
-            <Banner id="focus" pagination={ true }>
+            <Banner  option={{ pagination: true, id:'focus'  }}>
                 {
                     focus.map((item, index) => {
                         return (
                             <div key={index}>
-                                <a href="#"> <img className="abcd" src={ item.pic_url } /> </a>
+                                <a target="_blank" href={ item.link }> <img className="abcd" src={ item.pic_url } /> </a>
                             </div>
                         )
                     })
@@ -50,24 +50,25 @@ class Home extends React.Component {
     // 工长案例数据
     var gzal = {
         moduoID: 'gzal',
-        title: { title: '工长案例', link: '#'},
+        title: { title: '工长案例', link: 'http://m.7gz.com/ZxCase/index.html'},
         data: Case
     }
     // 专属设计数据
     var zhuanshusheji = {
         moduoID: 'zssj',
-        title: { title: '专属设计', link: '#'},
+        title: { title: '专属设计', link: 'http://m.7gz.com/Designs'},
         data: index_xq
     }
      // 灵感图集
     var linggantuji = {
         moduoID: 'lgtj',
         title: { title: '灵感图集', link: '#'},
+        list: ['户型', '空间', '风格'],
         data:inspiration
     }
      // 装修不被坑
     var bukeng = {
-        title: { title: '装修不被坑', link: '#'},
+        title: { title: '装修不被坑', link: 'http://m.7gz.com/News/'},
         data:article
     }
     // const { assets } = this.state;

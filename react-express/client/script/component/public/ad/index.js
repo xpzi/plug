@@ -13,7 +13,6 @@ class Ad extends React.Component {
 		this.setState({
 			hide: 'hide'
 		});
-		console.log( this.state )
 	}
 
 	render(){
