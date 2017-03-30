@@ -13,7 +13,6 @@ var middleware = function( app ){
             colors: true
         }
 	}));
-	
 	app.use( webpackHotMiddleware( compiler ) );
 }
 

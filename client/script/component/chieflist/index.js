@@ -1,4 +1,5 @@
 import React from 'react';
+require('./index.scss');
 
 
 class Home extends React.Component {

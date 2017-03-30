@@ -1,11 +1,19 @@
 @import './init.scss';
+
+#app{
+	@include flexbox();
+	@include flex-direction(column);
+	@include flex-direction(column);
+	@include flex(1);
+}
+
 body, html{
 
 	height: 100%;
 	width: 100%;
-
 	@include flexbox();
 	@include flex-direction(column);
+	
 }
 html{
 	font-size: 100px;

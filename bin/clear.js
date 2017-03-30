@@ -2,6 +2,7 @@ var fs = require("fs");
 var path = require("path");
 
 
+
 deleteFolderRecursive = function(url) {
   var files = [];
   //判断给定的路径是否存在

@@ -1,8 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
-const dllEnter = require('./config/dll-config.js');
+const dllEnter = require('./config/config.js').dll;
 
-// console.log( process.env.NODE_ENV );
 
 module.exports = {
   entry: dllEnter,

@@ -6,6 +6,7 @@
 ```
 npm install
 npm install nodemon -g
+npm dll
 npm start
 ```
 
@@ -18,9 +19,9 @@ http://127.0.0.1:1314
 ## 命令
 
 ```
+npm run dll             打包公共库
 npm run start    	启动开发模式
 npm run build    	打包程序文件
-npm run dll             打包公共库
 npm run prod             生产模式
 /*npm run public		部署文件	*/
 ```
@@ -55,16 +56,33 @@ npm run prod             生产模式
 ```
 
 
+- 开发指定页面 [开发时只有指定页面能正常访问，服务端调式可以提高效率]
+	
+	配置/config/config.js
+	```
+		debugAll: false
 
+		enter:{
+			home: ["./client/enter/home.js"]
+		},
 
+	```
 
+- 全站开发 [所有页面都可以正常访问， 服务端调式等待时间较长]
+
+	配置/config/config.js
+	```
+		debugAll: false
+
+	```
++ 建议： 服务端开发时，配置  debugAll : false,   页面开发时，配置 debugAll:true
 	
 
 - 公共库的打包
 
-	在 /config/dll-config.js中配置依赖库的名字
+	在 /config/config.js中配置依赖库的名字
 	```
-		{
+		dll:{
 		    react: ['react', 'react-dom'],
 		    pulgin: ['swiper','iscroll']
 		}

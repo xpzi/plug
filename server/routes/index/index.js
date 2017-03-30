@@ -23,9 +23,5 @@ router.get('/chieflist', require('./chieflist.js'));
 router.get('/zxcase', require('./zxcase.js'));
 
 
-router.get('/apiindex', function(req, res, next){
-
-	res.send('还没有开始')
-})
 
 module.exports = router;
