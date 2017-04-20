@@ -1,9 +1,15 @@
 {
   "javascript": {
+    "home": "http://127.0.0.1:1314/js/home.js",
+    "zxcase": "http://127.0.0.1:1314/js/zxcase.js",
+    "app": "http://127.0.0.1:1314/js/app.js",
     "chieflist": "http://127.0.0.1:1314/js/chieflist.js",
     "vendors": "http://127.0.0.1:1314/js/vendors.js"
   },
   "styles": {
+    "home": "http://127.0.0.1:1314/css/home.css",
+    "zxcase": "http://127.0.0.1:1314/css/zxcase.css",
+    "app": "http://127.0.0.1:1314/css/app.css",
     "chieflist": "http://127.0.0.1:1314/css/chieflist.css"
   },
   "assets": {}
