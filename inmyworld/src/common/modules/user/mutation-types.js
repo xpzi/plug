@@ -1,0 +1,3 @@
+export const USER_INFO = 'USER_INFO'
+export const USER_ISLOGIN = 'USER_ISLOGIN'
+export const UPDATE_USER_INFO = 'UPDATE_USER_INFO'

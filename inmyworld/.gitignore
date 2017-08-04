@@ -1,0 +1,11 @@
+.DS_Store
+node_modules/
+// dist/*
+// !dist/prod
+*.log*
+test/unit/coverage
+test/e2e/reports
+.vscode/
+.idea
+webpack_cache/*
+package-lock.json

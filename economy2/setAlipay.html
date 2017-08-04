@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="映客,映客直播,映客app,映客官网,直播,明星直播,映客下载,映客直播下载,映客app下载,视频交友,全民直播,美女直播,高颜值直播" />
+    <meta name="description" content="映客直播,实时、高清、快捷、流畅的视频直播平台,中国全新的视频社交媒体,明星大咖、网络红人、时尚娱乐、高颜值、视频交友等尽在映客直播app" />
+    <title>支付宝设置</title>
+    <link type="image/x-icon" rel="shortcut icon" href="https://act.inke.cn/common/favicon.ico">
+    <script>var rem = { baseRem: 20, baseWidth: 375, rootEle: document.getElementsByTagName("html")[0], initHandle: function() { this.setRemHandle(); this.resizeHandle(); }, setRemHandle: function() { var clientWidth = document.documentElement.clientWidth || document.body.clientWidth; this.rootEle.style.fontSize = clientWidth * this.baseRem / this.baseWidth + "px"; }, resizeHandle: function() { var that = this; window.addEventListener("resize", function() { setTimeout(function() { that.setRemHandle(); }, 300); }); } }; rem.initHandle();</script>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+		.collection{
+			background: #fff;
+		}
+		.collection label{  display: flex; justify-content: space-between;  align-items: center; height: 2.35rem; padding: 0 .8rem;}
+		.collection label span{ font-size: 0.75rem; color: #333;  }
+		.collection label input{ text-align: right; font-size: 0.75rem; color: #333;}
+		.collection label input::placeholder{font-size: 0.75rem; color: #aaa; }
+	
+		.errbox{ display: none;	 }
+		.infobox .errinfo{ display: flex; padding: 0.8rem;  font-size: .65rem; color: #FF3E3E;}
+		.infobox .info{ padding: 0.75rem 0.95rem; font-size: .65rem; color: #aaa; line-height: 1.15rem;  }
+
+
+		.success, .loading{   display: none; position: fixed;     top: 0;     left: 0;     z-index: 999;    width: 100%;    height: 100%;}
+		.success p, .loading p{ display: flex; justify-content: center; align-items: center; flex-direction: column;  position: absolute; top:50%; left: 50%; margin-top: -2.7rem; margin-left: -2.5rem; width: 4rem; height: 4rem; padding: 1rem; border-radius: .2rem; background-color: rgba(0,0,0,.72);}
+		.loading img{ height: 1.85rem;  width: 1.85rem;  -webkit-animation: rotateing 2s infinite linear; animation: rotateing 2s infinite linear;}
+		.success img{height: 1.85rem;  width: 1.85rem;}
+		.success span, .loading span{ color: #ccc; font-size: .75rem; margin-top: .5rem; }
+		@-webkit-keyframes rotateing {
+			0%{ transform: rotate(0);}
+			8.33%{ transform: rotate(0);} 8.333%{ transform: rotate(30deg);}
+			16.66%{ transform: rotate(30deg);} 16.666%{ transform: rotate(60deg);}
+			24.99%{ transform: rotate(60deg);} 25%{ transform: rotate(90deg);}
+			33.33%{ transform: rotate(90deg);} 33.333%{ transform: rotate(120deg);}
+			41.66%{ transform: rotate(120deg);} 41.666%{ transform: rotate(150deg);}
+			49.99%{ transform: rotate(150deg);} 50%{ transform: rotate(180deg);}
+			58.33%{ transform: rotate(180deg);} 58.333%{ transform: rotate(210deg);}
+			66.66%{ transform: rotate(210deg);} 66.666%{ transform: rotate(240deg);}
+			74.99%{ transform: rotate(240deg);} 75%{ transform: rotate(270deg);}
+			83.33%{ transform: rotate(270deg);} 83.333%{ transform: rotate(300deg);}
+			91.66%{ transform: rotate(300deg);} 91.666%{ transform: rotate(330deg);}
+			99.99%{ transform: rotate(330deg);} 100%{ transform: rotate(360deg);} 
+		}
+		@keyframes rotateing {
+			0%{ transform: rotate(0);}
+			8.33%{ transform: rotate(0);} 8.333%{ transform: rotate(30deg);}
+			16.66%{ transform: rotate(30deg);} 16.666%{ transform: rotate(60deg);}
+			24.99%{ transform: rotate(60deg);} 25%{ transform: rotate(90deg);}
+			33.33%{ transform: rotate(90deg);} 33.333%{ transform: rotate(120deg);}
+			41.66%{ transform: rotate(120deg);} 41.666%{ transform: rotate(150deg);}
+			49.99%{ transform: rotate(150deg);} 50%{ transform: rotate(180deg);}
+			58.33%{ transform: rotate(180deg);} 58.333%{ transform: rotate(210deg);}
+			66.66%{ transform: rotate(210deg);} 66.666%{ transform: rotate(240deg);}
+			74.99%{ transform: rotate(240deg);} 75%{ transform: rotate(270deg);}
+			83.33%{ transform: rotate(270deg);} 83.333%{ transform: rotate(300deg);}
+			91.66%{ transform: rotate(300deg);} 91.666%{ transform: rotate(330deg);}
+			99.99%{ transform: rotate(330deg);} 100%{ transform: rotate(360deg);} 
+		}
+    </style>
+</head>
+<body>
+
+	<ul class="list">
+		<li class="collection">
+			<label >
+				<span>收款账号</span>
+				<input type="text" name="collection" placeholder="点击输入">
+			</label>
+		</li>
+	</ul>
+	<div class="infobox">
+		<div class="errbox"><span class="errinfo">您输入的支付宝账号有误</span></div>
+		<p class="info">请务必填写您映客实名认证的支付宝账号，否则无法结算任务费用。如果您还未在映客用支付宝实名认证，请先实名认证。</p>
+
+		<a class="submit-btn">提交</a>
+	</div>
+
+	<!--loading-->
+    <!-- <section id="loading"><p><span></span></p></section> -->
+    <div class="loading">
+    	<p>
+	    	<img src="./img/RefreshIndicator@2x.png">
+	    	<span>正在加载</span>
+    	</p>
+    </div>
+    <div id="success" class="success">
+    	<p>
+	    	<img src="./img/success@2x.png">
+	    	<span>提交成功</span>
+    	</p>
+    </div>
+    <!--loading结束-->
+</body>
+<script src="https://act.inke.cn/common/zepto.min.js"></script>
+<script src="https://act.inke.cn/lib/canvasResize.min.js"></script>
+<script src="js/common-s.js"></script>
+<script src="js/base.js"></script>
+<script type="text/javascript">
+	var Page = {
+		collection: $('input[name=collection]'),
+		submit_btn: $('.submit-btn'),
+		loading: $('.loading'),
+		success: $('.success'),
+		error: $('.errbox'),
+		init: function(){
+			this.bindEvent();
+			this.initData();
+		},
+
+		bindEvent: function(){
+			var that = this;
+
+// 			提交测试按钮
+			this.submit_btn.on('click', function(){
+				that.submitAlipay( );
+			});
+
+			that.collection.on('focus', function () {
+                that.error.show().find('span').hide();
+            });
+		},
+
+		initData: function(){
+			var that= this;
+            Common.rightButton.initRightButton({
+                text: "完成",
+                callback: function () {
+                    that.submitAlipay();
+                }
+            });
+		},
+
+		submitAlipay: function(  ){
+			var that = this;
+			var params = getParams();
+			var errInfo = verify(params);
+
+
+			if( !errInfo ){
+                this.loading.show();
+				 Common.ajax({ // 提交支付宝账号
+				 	url: '/app/insert_media_alipay',
+					 data:params,
+				 	success: function( data ){
+                        that.loading.hide();
+                        if(data.dm_error == 0){
+                            that.success.show();
+                            setTimeout( function(){
+                                that.success.fadeOut();
+                                window.history.back();
+                                window.location.reload();
+							}, 2000)
+                        }else{
+                            Base.alertShow(data.error_msg);
+                            that.error.show().find('span').html(data.error_msg)
+                        }
+				 	},
+				 	error: function( err ){
+                        that.loading.hide();
+                        Base.alertShow('提交失败，请重新提交');
+                        that.error.show().find('span').html('提交失败，请重新提交')
+				 	}
+				 });
+			} else{
+				Base.alertShow(errInfo);
+			}
+
+
+			function verify( params ){
+				if( !params.alipay ){
+					return '请填写支付宝账号后提交';
+				}
+				return 0;
+
+			}
+			function getParams(){
+				return {alipay: that.collection.val(), v: '201708'};
+			}
+		}
+	}
+
+	Page.init();
+</script>
+
+</html>

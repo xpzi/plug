@@ -1,0 +1,30 @@
+/*
+  常用样式工具方法
+  统一命名空间 .com-
+  @author libx@inke.com 2017-05-22
+*/
+
+@com-color: black;
+.com-triangle-down (@color, @size: 6) {
+  width: 0;
+  height: 0;
+  border-top: @size * 1px solid @color;
+  border-left: @size * 1px solid transparent;
+  border-right: @size * 1px solid transparent;
+  border-bottom: 0;
+  position: absolute;
+  top: 50%;
+  margin-top: -(@size / 2) * 1px;
+}
+
+.com-triangle-up (@color, @size: 6) {
+  width: 0;
+  height: 0;
+  border-bottom: @size * 1px solid @color;
+  border-left: @size * 1px solid transparent;
+  border-right: @size * 1px solid transparent;
+  border-top: 0;
+  position: absolute;
+  top: 50%;
+  margin-top: -(@size / 2) * 1px;
+}

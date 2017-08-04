@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="映客,映客直播,映客app,映客官网,直播,明星直播,映客下载,映客直播下载,映客app下载,视频交友,全民直播,美女直播,高颜值直播" />
+    <meta name="description" content="映客直播,实时、高清、快捷、流畅的视频直播平台,中国全新的视频社交媒体,明星大咖、网络红人、时尚娱乐、高颜值、视频交友等尽在映客直播app" />
+    <title>映任务</title>
+    <link type="image/x-icon" rel="shortcut icon" href="https://act.inke.cn/common/favicon.ico">
+    <script>
+    var rem = { baseRem: 20, baseWidth: 375, rootEle: document.getElementsByTagName('html')[0], initHandle: function() { this.setRemHandle(); this.resizeHandle(); }, setRemHandle: function() { var clientWidth = document.documentElement.clientWidth; this.rootEle.style.fontSize = clientWidth * this.baseRem / this.baseWidth + "px"; }, resizeHandle: function() { var that = this; window.addEventListener("resize", function() { setTimeout(function() { that.setRemHandle(); }, 300); }); } }; rem.initHandle();
+    </script>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <main id="wrapper">
+        <section class="top">
+            <p>
+                <a class="task-link">
+                    <i></i>
+                    <span>我的任务</span>
+                </a>
+            </p>
+            <p>
+                <a class="task-link2">
+                    <i></i>
+                    <span>入驻管理</span>
+                </a>
+            </p>
+        </section>
+        <section class="task-list">
+            <p class="title">任务邀约</p>
+        </section>
+        <section class="no-data">
+            <i></i>
+            <p>您暂时还未接到邀约</p>
+        </section>
+        <section class="task-more">
+            <p class="btn">点击查看更多</p>
+            <p class="load">
+                <span>正在加载中</span>
+                <i></i>
+            </p>
+        </section>
+    </main>
+    <section id="loading">
+        <p><span></span></p>
+    </section>
+    <script src="https://act.inke.cn/common/zepto.min.js"></script>
+    <script src="js/common-s.js"></script>
+    <script>
+    var Page = {
+        uid: Common.getQueryString('uid'),
+        sid: Common.getQueryString('sid'),
+        page: 1,
+        pageNum: 10,
+        init: function () {
+
+            // 我的任务
+            $('.task-link').on('click', function () {
+                window.setTimeout(function () {
+                    window.location.href = 'task.html' + window.location.search;
+                }, 300);
+            });
+
+            // 入驻管理
+            $('.task-link2').on('click', function () {
+                window.setTimeout(function () {
+                    window.location.href = 'index2.html' + window.location.search;
+                }, 300);
+            });
+
+            this.renderHandle();
+            this.eventHandle();
+        },
+        // =1:全部 =2:进行中 =3:已完成 =4:任务邀约
+        getListHandle: function (_state, _page) {
+            return Common.ajax({
+                host: '//broker.busi.inke.cn',
+                url: '/app/get_order_list',
+                data: {
+                    status: _state,
+                    cur_page: _page
+                }
+            });
+        },
+        renderHandle: function () {
+            var that = this,
+                $taskList = $('.task-list'),
+                $noData = $('.no-data'),
+                $taskMore = $('.task-more'),
+                _html = '';
+
+            $taskMore.find('.load').show();
+
+            that.getListHandle(4, that.page).done(function (res) {
+                $taskMore.find('.load').hide();
+                $taskMore.find('.btn').hide();
+                $taskList.show();
+                $noData.hide();
+                if (res.dm_error == 0 && res.data && res.data.order_list) {
+                    var _data = res.data.order_list,
+                        _isMore = that.pageNum * that.page - res.data.order_num;
+
+                    if (res.data.order_num > that.pageNum) {
+                        $taskMore.find('.btn').show();
+                    }
+
+                    if (_isMore > 0 && _isMore < that.pageNum) {
+                        $taskMore.find('.btn').hide();
+                    }
+
+                    _data.forEach(function (item, index) {
+                        _html += '<div class="list-item">' +
+                            '<dl>' +
+                            '<dt>' + item.title + '</dt>' +
+                            '<dd>价格：<span>' + item.order_price + '元</span></dd>' +
+                            '<dd>直播时间：' + item.live_start_time + '~' + item.live_end_time + '</dd>' +
+                            '<dd>广告形式：' + item.order_type + '</dd>' +
+                            '</dl>' +
+                            '<p><a data-id="' + item.ad_order_id + '" href="get.html?uid=' + that.uid + '&sid=' + that.sid + '&ad_order_id=' + item.ad_order_id + '">查看详情</a></p>' +
+                            (!item.is_click ? '<i class="new-icon"></i>' : '') +
+                            '</div>';
+                    });
+                    $taskList.append(_html);
+                } else {
+                    $noData.show();
+                }
+            }).fail(function () {
+                $noData.show();
+            });
+        },
+        eventHandle: function () {
+            var that = this,
+                isNew = 0;
+
+            $('.top p').on('touchstart', function () {
+                if ($(this).index() == 0) {
+                    that.log('mytask');
+                } else {
+                    that.log('help');
+                }
+            });
+
+            // 查看更多
+            $('.task-more .btn').on('click', function () {
+                ++that.page;
+                that.renderHandle();
+            });
+
+            // 是否已访问过
+            $('.task-list').on('click', 'p a', function () {
+                isNew = $(this).parent().siblings('i.new-icon').length;
+                if (isNew) {
+                    Common.ajax({
+                        host: '//broker.busi.inke.cn',
+                        url: '/app/order_click',
+                        data: {
+                            ad_order_id: $(this).data('id')
+                        },
+                        success: function (res) {
+                        }
+                    });
+                }
+            });
+        },
+        log: function (click_id, callback) {  //  埋点
+            Common.log({
+                busi_code: "economy2",
+                page_code: "index",
+                other: {
+                    click_id: click_id
+                },
+                callback: callback
+            });
+        }
+    };
+
+    $(function() {
+        Page.init();
+    });
+
+    </script>
+</body>
+<div style="display:none;"><script src="https://s95.cnzz.com/z_stat.php?id=1261919673&web_id=1261919673" language="JavaScript"></script></div>
+</html>

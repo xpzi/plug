@@ -1,0 +1,70 @@
+* {margin: 0; padding: 0; outline: none; box-sizing: border-box; font-family: HelveticaNeue, Arial, "Droid Sans Fallback", STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", sans-serif;}
+html, body {width: 100%; height: 100%; background: #ffffff;}
+ul, ol, li {list-style: none;}
+a, button {border: none; outline: none; display: block; background: none; -webkit-user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent;}
+input, label {border: none; outline: none; background: none; -webkit-tap-highlight-color: transparent;}
+img {display: block; border: none;}
+a {color: #333333; text-decoration: none;}
+/*--------loading--------*/
+#loading {width: 100%; height: 100%; position: fixed; top: 0; left: 0;} #loading p { position: absolute; top: 50%; left: 50%; margin-top: -2rem; margin-left: -2rem; width: 4rem; height: 4rem; background-color: rgba(0, 0, 0, .6); border-radius: 0.2rem;} #loading p span { position: absolute; top: 50%; left: 50%; margin-top: -0.2rem; margin-left: -0.2rem; width: 0.4rem; height: 0.4rem; border-radius: 50%; -webkit-animation: loader 1s infinite linear; animation: loader 1s infinite linear;} @-webkit-keyframes loader { 0%, 100% { box-shadow: 0 -0.8rem 0 0 #ffffff, 0.6rem -0.575rem 0 0 rgba(255, 255, 255, 0.2), 0.8rem 0 0 0 rgba(255, 255, 255, 0.2), 0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.2), 0 0.8rem 0 0 rgba(255, 255, 255, 0.2), -0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.2), -0.8rem 0 0 0 rgba(255, 255, 255, 0.5), -0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.7);} 12.5% { box-shadow: 0 -0.8rem 0 0 rgba(255, 255, 255, 0.7), 0.575rem -0.575rem 0 0 #ffffff, 0.8rem 0 0 0 rgba(255, 255, 255, 0.2), 0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.2), 0 0.8rem 0 0 rgba(255, 255, 255, 0.2), -0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.2), -0.8rem 0 0 0 rgba(255, 255, 255, 0.2), -0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.5);} 25% { box-shadow: 0 -0.8rem 0 0 rgba(255, 255, 255, 0.5), 0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.7), 0.8rem 0 0 0 #ffffff, 0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.2), 0 0.8rem 0 0 rgba(255, 255, 255, 0.2), -0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.2), -0.8rem 0 0 0 rgba(255, 255, 255, 0.2), -0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.2);} 37.5% { box-shadow: 0 -0.8rem 0 0 rgba(255, 255, 255, 0.2), 0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.5), 0.8rem 0 0 0 rgba(255, 255, 255, 0.7), 0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.2), 0 0.8rem 0 0 rgba(255, 255, 255, 0.2), -0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.2), -0.8rem 0 0 0 rgba(255, 255, 255, 0.2), -0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.2);} 50% { box-shadow: 0 -0.8rem 0 0 rgba(255, 255, 255, 0.2), 0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.2), 0.8rem 0 0 0 rgba(255, 255, 255, 0.5), 0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.7), 0 0.8rem 0 0 #ffffff, -0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.2), -0.8rem 0 0 0 rgba(255, 255, 255, 0.2), -0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.2);} 62.5% { box-shadow: 0 -0.8rem 0 0 rgba(255, 255, 255, 0.2), 0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.2), 0.8rem 0 0 0 rgba(255, 255, 255, 0.2), 0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.5), 0 0.8rem 0 0 rgba(255, 255, 255, 0.7), -0.575rem 0.575rem 0 0 #ffffff, -0.8rem 0 0 0 rgba(255, 255, 255, 0.2), -0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.2);} 75% { box-shadow: 0 -0.8rem 0 0 rgba(255, 255, 255, 0.2), 0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.2), 0.8rem 0 0 0 rgba(255, 255, 255, 0.2), 0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.2), 0 0.8rem 0 0 rgba(255, 255, 255, 0.5), -0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.7), -0.8rem 0 0 0 #ffffff, -0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.2);} 87.5% { box-shadow: 0 -0.8rem 0 0 rgba(255, 255, 255, 0.2), 0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.2), 0.8rem 0 0 0 rgba(255, 255, 255, 0.2), 0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.2), 0 0.8rem 0 0 rgba(255, 255, 255, 0.2), -0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.5), -0.8rem 0 0 0 rgba(255, 255, 255, 0.7), -0.575rem -0.575rem 0 0 #ffffff;}} @keyframes loader { 0%, 100% { box-shadow: 0 -0.8rem 0 0 #ffffff, 0.6rem -0.575rem 0 0 rgba(255, 255, 255, 0.2), 0.8rem 0 0 0 rgba(255, 255, 255, 0.2), 0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.2), 0 0.8rem 0 0 rgba(255, 255, 255, 0.2), -0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.2), -0.8rem 0 0 0 rgba(255, 255, 255, 0.5), -0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.7);} 12.5% { box-shadow: 0 -0.8rem 0 0 rgba(255, 255, 255, 0.7), 0.575rem -0.575rem 0 0 #ffffff, 0.8rem 0 0 0 rgba(255, 255, 255, 0.2), 0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.2), 0 0.8rem 0 0 rgba(255, 255, 255, 0.2), -0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.2), -0.8rem 0 0 0 rgba(255, 255, 255, 0.2), -0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.5);} 25% { box-shadow: 0 -0.8rem 0 0 rgba(255, 255, 255, 0.5), 0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.7), 0.8rem 0 0 0 #ffffff, 0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.2), 0 0.8rem 0 0 rgba(255, 255, 255, 0.2), -0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.2), -0.8rem 0 0 0 rgba(255, 255, 255, 0.2), -0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.2);} 37.5% { box-shadow: 0 -0.8rem 0 0 rgba(255, 255, 255, 0.2), 0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.5), 0.8rem 0 0 0 rgba(255, 255, 255, 0.7), 0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.2), 0 0.8rem 0 0 rgba(255, 255, 255, 0.2), -0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.2), -0.8rem 0 0 0 rgba(255, 255, 255, 0.2), -0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.2);} 50% { box-shadow: 0 -0.8rem 0 0 rgba(255, 255, 255, 0.2), 0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.2), 0.8rem 0 0 0 rgba(255, 255, 255, 0.5), 0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.7), 0 0.8rem 0 0 #ffffff, -0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.2), -0.8rem 0 0 0 rgba(255, 255, 255, 0.2), -0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.2);} 62.5% { box-shadow: 0 -0.8rem 0 0 rgba(255, 255, 255, 0.2), 0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.2), 0.8rem 0 0 0 rgba(255, 255, 255, 0.2), 0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.5), 0 0.8rem 0 0 rgba(255, 255, 255, 0.7), -0.575rem 0.575rem 0 0 #ffffff, -0.8rem 0 0 0 rgba(255, 255, 255, 0.2), -0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.2);} 75% { box-shadow: 0 -0.8rem 0 0 rgba(255, 255, 255, 0.2), 0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.2), 0.8rem 0 0 0 rgba(255, 255, 255, 0.2), 0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.2), 0 0.8rem 0 0 rgba(255, 255, 255, 0.5), -0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.7), -0.8rem 0 0 0 #ffffff, -0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.2);} 87.5% { box-shadow: 0 -0.8rem 0 0 rgba(255, 255, 255, 0.2), 0.575rem -0.575rem 0 0 rgba(255, 255, 255, 0.2), 0.8rem 0 0 0 rgba(255, 255, 255, 0.2), 0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.2), 0 0.8rem 0 0 rgba(255, 255, 255, 0.2), -0.575rem 0.575rem 0 0 rgba(255, 255, 255, 0.5), -0.8rem 0 0 0 rgba(255, 255, 255, 0.7), -0.575rem -0.575rem 0 0 #ffffff;}}
+/*--------dialog--------*/
+.dialog-box {width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); position: fixed; top: 0; left: 0; z-index: 120; display: none;}
+.dialog-box .dialog {width: 14.25rem; height: 8rem; background: #ffffff; border-radius: 10px; position: fixed; top: 32%; left: 0; right: 0; margin: auto; overflow: hidden;}
+.dialog button {color: #00D8C9; font-size: 0.85rem;}
+.alert-text {width: 100%; height: 5.5rem; display: table;}
+.alert-text p {color: #849195; font-size: 0.8rem; line-height: 1.2rem; text-align: center; display: table-cell; vertical-align: middle;}
+.alert-out {width: 100%; height: 2.5rem; border-top: 1px solid rgba(229, 229, 229, 0.50);}
+.alert-out:hover {background: rgba(229, 229, 229, 0.50);}
+/*--------confirm--------*/
+.confirm-text {width: 100%; height: 5.5rem; display: table;}
+.confirm-text p {color: #00D8C9; font-size: 0.9rem; line-height: 1.2rem; text-align: center; display: table-cell; vertical-align: middle;}
+.confirm-btn {width: 100%; height: 2.5rem; position: relative; overflow: hidden;}
+.confirm-btn button {width: 50%; height: 100%; float: left; border-top: 1px solid rgba(229, 229, 229, 0.50);}
+.confirm-btn button:hover {background: rgba(229, 229, 229, 0.50);}
+.confirm-btn button:nth-of-type(1) {color: #849195;}
+.confirm-btn span {width: 1px; height: 100%; background: rgba(229, 229, 229, 0.50); position: absolute; top: 0; left: 0; right: 0; margin: auto;}
+/*--------content--------*/
+#wrapper {width: 100%; display: none; position: relative;}
+section{color:#495353;font-size:.8rem;}
+.hint{width:100%;height:2rem;border-bottom:1px solid rgba(229,229,229,.8);background:#FFFEF4;color:#FF9116;text-align:center;font-size:.65rem;line-height:2rem;}
+.desc{overflow:hidden;padding:0 .85rem;width:100%;height:auto;}
+.desc-title{margin-bottom:.45rem;height:2.25rem;border-bottom:1px solid rgba(229,229,229,.8);line-height:2.25rem;}
+.desc-msg p{line-height:1.5rem;}
+.desc-msg p:nth-of-type(1) span{color:#FF9116;}
+.desc-msg span{color:#849195;font-size:.65rem;}
+.desc-msg .desc-par{padding:.2rem 0 .8rem;border-bottom:1px solid rgba(229,229,229,.8);color:#849195;font-size:.65rem;line-height:.95rem;}
+.desc-box{margin-left:.85rem;padding-bottom:.75rem;color:#495353;font-size:.8rem;}
+.desc-pact{border-bottom:1px solid rgba(229,229,229,.8);}
+.desc-box p{line-height:2.25rem;}
+.desc-img{overflow:auto;-webkit-overflow-scrolling:touch;overflow-scrolling:touch;}
+.desc-img::-webkit-scrollbar{display:none;}
+.desc-img ul{width:auto;height:5rem;}
+.desc-img li{float:left;margin-right:.5rem;width:5rem;height:5rem;border:1px solid #DFE7EA;}
+.desc-img img{width:100%;height:100%;}
+.detail{padding:.5rem .85rem 0;border-bottom:.5rem solid #F6F9F9;}
+.detail p{color:#849195;font-size:.65rem;line-height:1.4rem;}
+.detail p:last-of-type{padding-bottom:.35rem;border-bottom:1px solid rgba(229,229,229,.8);}
+.detail div{line-height:2.3rem;}
+.detail-margin{height:5.9rem;}
+.bot{position:fixed;bottom:0;display:none;padding-top:2.15rem;width:100%;height:5.9rem;background:#FFF;box-shadow:0 -1px 4px 0 rgba(91,150,145,.16);}
+.bot-btn{margin:auto;width:15.75rem;height:2.45rem;border-radius:2.5rem;background:#00D8C9;color:#FFF;font-size:.9rem;}
+.bot-none{border-bottom:2.5rem solid #FFF;}
+.bot-ash{background:#DFE7EA;}
+.bot-rules{position:absolute;top:.6rem;left:.75rem;color:#849195;text-indent:.85rem;font-size:.65rem;line-height:.95rem;}
+.bot-rules a{display:inline;color:#00D8C9;}
+.bot-rules input{position:absolute;top:.15rem;left:0;z-index:1;width:.6rem;height:.6rem;opacity:0;filter:alpha(opacity=0);}
+.bot-rules button{position:absolute;top:.15rem;left:0;width:.6rem;height:.6rem;background:url(../img/none.png) no-repeat;background-size:100% 100%;}
+.bot-rules .btn-true{background:url(../img/rules.png) no-repeat;background-size:100% 100%;}
+.swiper-container{position:fixed;top:0;z-index:2000;display:none;width:100%;height:100%;background:#000;}
+.swiper-container img{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;padding:0 .2rem;width:100%;}
+.swiper-container .swiper-pagination{bottom:1.25rem;}
+.swiper-pagination .swiper-pagination-bullet{width:.35rem;height:.35rem;border-radius:50%;background:#333;opacity:1;}
+.swiper-pagination .swiper-pagination-bullet-active{background:#FFF;}
+.swiper-out{position:absolute;top:1rem;left:1rem;z-index:10;width:1rem;height:1rem;background:url(../img/out.png) no-repeat;background-size:100% 100%;}
+.swiper-down{position:absolute;right:1rem;bottom:1rem;z-index:10;width:2rem;height:2rem;background:url(../img/down.png) no-repeat;background-size:100% 100%;}
+.take{position:fixed;top:20%;right:0;left:0;overflow:hidden;margin:auto;width:14.75rem;height:14.55rem;border-radius:10px;background:#fff;}
+.take-title{height:3.3rem;border-bottom:1px solid rgba(229,229,229,.5);color:#00D8C9;text-align:center;font-size:.9rem;line-height:3.3rem;}
+.take-text{position:relative;padding:1rem 1.72rem 0;height:8.75rem;color:#849195;font-size:.8rem;line-height:1.15rem;}
+.take-text a{position:absolute;top:6.65rem;width:11.31rem;height:.9rem;color:#00D8C9;text-align:center;font-size:.8rem;line-height:.9rem;}
+.take-out{width:100%;height:2.5rem;border-top:1px solid rgba(229,229,229,.5);color:#849195;font-size:.85rem;}
+.take-out:hover{background:rgba(229,229,229,.5);}

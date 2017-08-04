@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="映客,映客直播,映客app,映客官网,直播,明星直播,映客下载,映客直播下载,映客app下载,视频交友,全民直播,美女直播,高颜值直播" />
+    <meta name="description" content="映客直播,实时、高清、快捷、流畅的视频直播平台,中国全新的视频社交媒体,明星大咖、网络红人、时尚娱乐、高颜值、视频交友等尽在映客直播app" />
+    <title>完善资料</title>
+    <link type="image/x-icon" rel="shortcut icon" href="https://act.inke.cn/common/favicon.ico">
+    <script>var rem = { baseRem: 20, baseWidth: 375, rootEle: document.getElementsByTagName("html")[0], initHandle: function() { this.setRemHandle(); this.resizeHandle(); }, setRemHandle: function() { var clientWidth = document.documentElement.clientWidth || document.body.clientWidth; this.rootEle.style.fontSize = clientWidth * this.baseRem / this.baseWidth + "px"; }, resizeHandle: function() { var that = this; window.addEventListener("resize", function() { setTimeout(function() { that.setRemHandle(); }, 300); }); } }; rem.initHandle();</script>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+        #wrapper{padding-bottom:6.2rem;}
+        .header{overflow:auto;box-sizing:border-box;padding:.8rem .8rem .4rem .8rem;width:100%;}
+        .photo{width:100%;height:5.4rem;}
+        .photo li{position:relative;float:left;box-sizing:border-box;margin:0 .4rem .4rem 0;width:5.4rem;height:5.4rem;border:1px dashed #ccc;}
+        .photo li:nth-of-type(3n){margin-right:0;}
+        .photo li .del{position:absolute;top:0;right:0;width:1.1rem;height:1.1rem;}
+        .photo li.upload-li{display:none;background:url(//img2.inke.cn/MTQ5MzcwOTYyNzMyMSM3NzIjanBn.jpg) no-repeat center 1.4rem;background-size:1.25rem 1.25rem;}
+        .photo li.show{display:block;}
+        .photo .js-show-img{display:none;width:100%;height:100%;background-position:center center;background-size:100% 100%;background-repeat:no-repeat;}
+        .photo .upload-btn{position:absolute;top:0;left:0;z-index:1;width:100%;height:100%;}
+        .photo .upload-ipt{position:absolute;top:0;left:0;z-index:2;margin:0;padding:0;width:100%;height:100%;border:none;background:0 0;opacity:0;}
+        .photo .upload-msg{width:100%;height:100%;color:#ccc;text-align:center;font-size:.5rem;line-height:7.7rem;}
+        .myself{margin-bottom:.4rem;}
+        .desc li{margin-bottom:.4rem;width:100%;height:auto;background:#fff;}
+        .desc span{display:block;}
+        .desc i{display:inline;}
+        .footer{position:fixed;bottom:0;padding:1rem 0;width:100%;background:#fff;box-shadow:0 -1px 4px 0 rgba(91,150,145,.16);}
+        .text{box-sizing:border-box;padding:.6rem .8rem;width:100%;height:auto;background:#fff;}
+        textarea{width:100%;height:2.5rem;text-align:justify;font-size:.75rem;line-height:1.25rem;resize:none;}
+        .realname-true{padding-right:3.8rem;height:100%;background:url(//img2.inke.cn/MTQ5NDMwMjc4NjQ2NiM3MDQjanBn.jpg) no-repeat right center;background-size:3.4rem 1rem;}
+        .fs-65{font-size:.65rem;}
+    </style>
+</head>
+<body>
+    <main id="wrapper">
+        <header class="header">
+            <ul class="photo">
+                <li class="upload-li show">
+                    <p class="upload-msg">点击上传个人照片</p>
+                    <p class="show-img js-show-img"></p>
+                    <button class="upload-btn"></button>
+                    <input class="upload-ipt" type="file" name="image">
+                </li>
+            </ul>
+            <input name="img-url" class="js-img-url" type="hidden">
+            <img class="js-show-img-fe" src="" style="display: none;">
+        </header>
+        <section class="main">
+            <div class="myself block block-a">
+                <p class="fl"><i class="c5 fs-65">●</i> 个人信息</p>
+                <p class="nick fr c3">点击编辑</p>
+            </div>
+            <ul class="desc c1">
+                <li>
+                    <p class="alipay block-d block-g">
+                        <span class="fl"><i class="c5 fs-65">●</i> 真实姓名</span>
+                        <span class="realname fr"></span>
+                    </p>
+                    <p class="realname-notice notice" style="display: none;">注：</p>
+                    <p class="collectionAlipay block-d block-g">
+                        <span class="fl"><i class="c5 fs-65">●</i> 收款支付宝</span>
+                        <span class="collection fr c3">点击编辑</span>
+                    </p>
+                    <p class="collection-notice notice">注：仅支付宝实名认证用户可申请映任务</p>
+                </li>
+                <!--<li>-->
+                    <!--<p class="bank block-d block-g">-->
+                        <!--<span class="fl"><i class="c5 fs-65"></i> 银行账号</span>-->
+                        <!--<span class="bcard fr c3">点击编辑</span>-->
+                    <!--</p>-->
+                    <!--<p class="notice">注：该账号用于任务结束后自动结算转账使用，请仔细填写</p>-->
+                <!--</li>-->
+                <li>
+                    <p class="block-d">
+                        <span class="fl"><!--<i class="c5 fs-65">●</i> -->自报邀约费（元/场）</span>
+                        <input style="width: 6rem;" id="price" class="ipt fr" type="text" placeholder="点击编辑" maxlength="10">
+                    </p>
+                    <!--<p class="notice" style="white-space: nowrap;">注：自报邀约费即您承接一条映任务期望获得的收入，每月可修改一次</p>-->
+                </li>
+            </ul>
+            <p class="title"><i class="c5">●</i> 个人简介</p>
+            <div class="text">
+                <textarea id="info" placeholder="请输入个人简介，25字以内。" maxlength="25"></textarea>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <button class="btn-f c4">提交</button>
+    </footer>
+
+    <!--loading-->
+    <section id="loading"><p><span></span></p></section>
+    <!--loading结束-->
+</body>
+<div style="display:none;"><script src="https://s95.cnzz.com/z_stat.php?id=1261919673&web_id=1261919673" language="JavaScript"></script></div>
+    <script src="https://act.inke.cn/common/zepto.min.js"></script>
+    <script src="https://act.inke.cn/lib/canvasResize.min.js"></script>
+    <script src="js/common-s.js"></script>
+    <script src="js/base.js"></script>
+    <script src="js/upload-file.js"></script>
+    <script>
+        var Page = {
+            header: $(".header"),
+            photo: $(".photo"),
+            photo_list: [],
+            upload_li: $(".upload-li"),
+            myself: $(".myself"),
+            nick: $(".nick"),
+            alipay: $(".alipay"),
+            realname: $(".realname"),
+            realname_notice: $(".realname-notice"),
+            collectionAlipay: $(".collectionAlipay"),
+            collection: $(".collection"),
+            collection_notice: $(".collection_notice"),
+//            bank: $(".bank"),
+            bcard: $(".bcard"),
+            price: $("#price"),
+            info: $("#info"),
+            btn_f: $(".btn-f"),
+            init: function () {
+                var that = this;
+                if (Base.uid && Base.sid) {
+                    that.bindEvent();
+                    that.initData();
+                    that.upload();
+                }
+            },
+            bindEvent: function () {
+                var that = this,
+                    $this = null,
+                    _index = 0;
+                Base.selFun();
+                that.myself.on("click", function () {
+                    that.saveOtherMsg("myself2.html");
+                });
+
+//                that.bank.on("click", function () {
+//                    that.saveOtherMsg("bank2.html");
+//                });
+
+                 that.collectionAlipay.on('click', function () {
+                     that.saveOtherMsg("setAlipay.html");
+                 });
+
+                Base.body.on("click", ".del", function () {
+                    $this = $(this);
+                    _index = $this.parent("li").index();
+                    that.photo_list.splice(_index, 1);
+                    $this.parent("li").remove();
+                    that.photoFun();
+                    that.judgeIpt();
+                });
+
+                that.info.on("input", function () {
+                    that.judgeIpt();
+                });
+
+                that.info.on("change", function () {
+                    that.judgeIpt();
+                });
+            },
+            flg1: 0,
+            flg2: 0,
+            flg3: 0,
+            flg4: 0,
+            flg5: 0,
+            user_info: {
+                v: "201706",
+                uid: Base.uid,
+                status: 0
+            },
+            tag_html: "",
+            language_html: "",
+            // 查询映天下平台主播信息
+            initData: function () {
+                var that = this,
+                    _time = new Date() * 1;
+                Base.loading.show();
+
+                function loading() {
+                    if (that.flg1 && that.flg2 && that.flg4 && that.flg5) {
+                        Base.loading.hide();
+                    }
+                }
+
+                // 主播信息
+                Common.ajax({
+                    host: Base.apiHost(),
+                    url: "/app/select_user_info",
+                    data: {
+                        v: "201706"
+                    },
+                    success: function (res) {
+                        that.flg1 = 1;
+                        loading();
+                        var data = res.data,
+                            dm_error = res.dm_error,
+                            error_msg = res.error_msg;
+                        _czc && _czc.push(["_trackEvent", "economy2_data2", "ajax", "initData_" + dm_error, (new Date() * 1 - _time)]);
+                        if (dm_error === 0) {
+                            that.user_info.status = data.status || 0;
+                            that.nick.html(data.nick).removeClass("c3");
+                            that.price.val(data.price / 100);
+                            that.info.val(data.info);
+                            if( data.alipay ){
+                                console.log('ddddddd',data);
+                                that.user_info.collection = data.alipay;
+                                that.collection.html(data.alipay ).removeClass('c3');
+                                that.collectionAlipay.off('click');
+                            }
+                            if (data.status === 0 || data.status === 3) {
+                                that.myself.off("click").on("click", function () {
+                                    Base.jumpHref("myself2.html");
+                                });
+//                                that.bank.off("click").on("click", function () {
+//                                    Base.jumpHref("bank2.html");
+//                                });
+                            }
+                        } else if (dm_error === 1099010012) {
+                            Base.alertShow("登录已过期，请在<br/>设置中退出并重新登录");
+                        } else if (dm_error === 1099010015) {
+                            // console.log(error_msg);
+                        } else {
+                            Base.alertShow(error_msg);
+                        }
+                    },
+                    error: function () {
+                        _czc && _czc.push(["_trackEvent", "economy2_data2", "ajax", "initData_error", (new Date() * 1 - _time)]);
+                        Base.loading.hide();
+                        Base.alertShow("网络错误，请退出重试");
+                    }
+                });
+
+                // 个人信息
+                Common.ajax({
+                    host: Base.apiHost(),
+                    url: "/app/insert_user_info",
+                    data: {
+                        v: "201706",
+                        type: 1
+                    },
+                    success: function (res) {
+                        that.flg2 = 1;
+                        loading();
+                        // console.log("个人信息：", res);
+                        var data = res.data,
+                            dm_error = res.dm_error,
+                            error_msg = res.error_msg;
+                        _czc && _czc.push(["_trackEvent", "economy2_data2", "ajax", "insert_user_info_" + dm_error, (new Date() * 1 - _time)]);
+
+                        if (dm_error === 0) {
+                            if (data) {
+                                $.extend(true, that.user_info, data || {});
+//                                if (data.status === 0 || data.status === 3) {
+//                                    Base.disabled();
+//                                    that.btn_f.off("click").removeClass("btn-t");
+//                                } else {
+//                                    that.btn_f.addClass("btn-t").off("click").on("click", function () {
+//                                        that.submitMsg();
+//                                    });
+//                                }
+                                var _tag_data = {},
+                                    _language_data = {};
+                                for (var i = 0; i < data.tag.length; i++) {
+                                    _tag_data[data.tag[i].sid] = data.tag[i].on;
+                                    if (data.tag[i].on) {
+                                        that.tag_html += data.tag[i].name + "、";
+                                    }
+                                }
+                                for (var j = 0; j < data.language.length; j++) {
+                                    _language_data[data.language[j].sid] = data.language[j].on;
+                                    if (data.language[j].on) {
+                                        that.language_html += data.language[j].name + "、";
+                                    }
+                                }
+                                that.user_info.tag = JSON.stringify(_tag_data);
+                                that.user_info.language = JSON.stringify(_language_data);
+                            }
+                        } else if (dm_error === 1099010012) {
+                            Base.alertShow("登录已过期，请在<br/>设置中退出并重新登录");
+                        } else if (dm_error === 1099010015) {
+                            Base.alertShow(error_msg);
+                        } else {
+                            Base.alertShow(error_msg);
+                        }
+                    },
+                    error: function () {
+                        _czc && _czc.push(["_trackEvent", "economy2_data2", "ajax", "insert_user_info_error", (new Date() * 1 - _time)]);
+                        Base.loading.hide();
+                        Base.alertShow("网络错误，请退出重试");
+                    }
+                });
+
+                // 银行账号
+//                Common.ajax({
+//                    host: Base.apiHost(),
+//                    url: "/app/insert_bank_info",
+//                    data: {
+//                        v: "201706",
+//                        type: 1
+//                    },
+//                    success: function (res) {
+//                        that.flg3 = 1;
+//                        loading();
+//                        // console.log("银行账号：", res);
+//                        var data = res.data,
+//                            dm_error = res.dm_error,
+//                            error_msg = res.error_msg;
+//                        _czc && _czc.push(["_trackEvent", "economy2_data2", "ajax", "insert_bank_info_" + dm_error, (new Date() * 1 - _time)]);
+//
+//                        if (dm_error === 0) {
+//                            if (data) {
+//                                $.extend(true, that.user_info, data || {});
+//                                that.bcard.html(data.bcard.replace(/(\d{4})(?=\d)/g, "$1 ")).removeClass("c3");
+////                                if (data.status === 0 || data.status === 3) {
+////                                    Base.disabled();
+////                                    that.btn_f.off("click").removeClass("btn-t");
+////                                } else {
+////                                    that.btn_f.addClass("btn-t").off("click").on("click", function () {
+////                                        that.submitMsg();
+////                                    });
+////                                }
+//                            }
+//                        } else if (dm_error === 1099010012) {
+//                            Base.alertShow("登录已过期，请在<br/>设置中退出并重新登录");
+//                        } else if (dm_error === 1099010015) {
+//                            Base.alertShow(error_msg);
+//                        } else {
+//                            Base.alertShow(error_msg);
+//                        }
+//                    },
+//                    error: function () {
+//                        _czc && _czc.push(["_trackEvent", "economy2_data2", "ajax", "insert_bank_info_error", (new Date() * 1 - _time)]);
+//                        Base.loading.hide();
+//                        Base.alertShow("网络错误，请退出重试");
+//                    }
+//                });
+
+                // 其他信息
+                Common.ajax({
+                    host: Base.apiHost(),
+                    url: "/app/upload_pic_url",
+                    data: {
+                        v: "201706",
+                        type: 1
+                    },
+                    success: function (res) {
+                        that.flg4 = 1;
+                        loading();
+                        // console.log("其他信息：", res);
+                        var data = res.data,
+                            dm_error = res.dm_error,
+                            error_msg = res.error_msg;
+                        _czc && _czc.push(["_trackEvent", "economy2_data2", "ajax", "upload_pic_url_" + dm_error, (new Date() * 1 - _time)]);
+
+                        if (dm_error === 0) {
+                            if (data) {
+                                $.extend(true, that.user_info, data || {});
+                                that.photo_list = data.pic.split(",");
+                                if (data.status === 0 || data.status === 3) {
+                                    for (var j = 0; j < that.photo_list.length; j++) {
+                                        $("<li class=\"li-img\" style=\"background:url(" + that.photo_list[j] + ") no-repeat center;background-size:100% auto;border:1px solid #ccc;\"><button class=\"del\" style=\"background:url(//img2.inke.cn/MTQ5MzcwOTY0MzU0NiM3MjYjanBn.jpg) no-repeat center;background-size:100% 100%;\" disabled></button></li>").insertBefore(that.upload_li);
+                                    }
+                                    Base.disabled();
+                                    that.btn_f.off("click").removeClass("btn-t");
+                                } else {
+                                    for (var i = 0; i < that.photo_list.length; i++) {
+                                        $("<li class=\"li-img\" style=\"background:url(" + that.photo_list[i] + ") no-repeat center;background-size:100% auto;border:1px solid #ccc;\"><button class=\"del\" style=\"background:url(//img2.inke.cn/MTQ5MzcwOTY0MzU0NiM3MjYjanBn.jpg) no-repeat center;background-size:100% 100%;\"></button></li>").insertBefore(that.upload_li);
+                                    }
+                                    that.btn_f.addClass("btn-t").off("click").on("click", function () {
+                                        that.submitMsg();
+                                    });
+                                }
+                                that.photoFun();
+                            }
+                        } else if (dm_error === 1099010012) {
+                            Base.alertShow("登录已过期，请在<br/>设置中退出并重新登录");
+                        } else if (dm_error === 1099010015) {
+                            Base.alertShow(error_msg);
+                        } else {
+                            Base.alertShow(error_msg);
+                        }
+                    },
+                    error: function () {
+                        _czc && _czc.push(["_trackEvent", "economy2_data2", "ajax", "upload_pic_url_error", (new Date() * 1 - _time)]);
+                        Base.loading.hide();
+                        Base.alertShow("网络错误，请退出重试");
+                    }
+                });
+
+                // 个人信息
+                Common.ajax({
+                    host: Base.apiHost(),
+                    url: "/app/user_info",
+                    success: function (res) {
+                        that.flg5 = 1;
+                        loading();
+                        var data = res.data,
+                            dm_error = res.dm_error,
+                            error_msg = res.error_msg;
+                        _czc && _czc.push(["_trackEvent", "economy2_data2", "ajax", "initInfo_" + dm_error, (new Date() * 1 - _time)]);
+                        if (dm_error === 0) {
+                            if (data.cert_type) {
+                                that.realname.html(data.real_name).addClass("realname-true");
+                                that.realname_notice.html("注：已实名认证").remove();
+                                that.user_info.nick = data.user_nick;
+                                that.user_info.realname = data.real_name || "";
+                                that.user_info.phone = data.phone_num.replace("86", "") || "";
+                            } else {
+                                that.realname.html("支付宝一键认证").addClass("c4");
+                                that.realname_notice.html("注：请完成支付宝实名认证，仅支付宝实名认证用户可申请映任务").show();
+                                Base.clickHref(that.alipay, "https://api.busi.inke.com/user/index");
+                            }
+                        } else if (dm_error === 1099010012) {
+                            Base.alertShow("登录已过期，请在<br/>设置中退出并重新登录");
+                        } else {
+                            Base.alertShow(error_msg);
+                        }
+                    },
+                    error: function () {
+                        _czc && _czc.push(["_trackEvent", "economy2_data2", "ajax", "initInfo_error", (new Date() * 1 - _time)]);
+                        Base.loading.hide();
+                        Base.alertShow("网络错误，请退出重试");
+                    }
+                });
+            },
+            // 存储其他信息
+            saveOtherMsg: function (url) {
+                var that = this,
+                    _time = new Date() * 1,
+                    _pic = that.photo_list.join(","),
+                    _info = "",
+                    _price = "";
+                Base.loading.show();
+
+                if (!_pic.length) {
+                    _pic = "";
+                }
+
+                // 存储其他信息
+                Common.ajax({
+                    host: Base.apiHost(),
+                    url: "/app/upload_pic_url",
+                    data: {
+                        v: "201706",
+                        type: 2,
+                        pic: _pic,
+                        price: _price,
+                        info: _info
+                    },
+                    success: function (res) {
+                        Base.loading.hide();
+                        // console.log("存储其他信息：", res);
+                        var data = res.data,
+                            dm_error = res.dm_error,
+                            error_msg = res.error_msg;
+                        _czc && _czc.push(["_trackEvent", "economy2_data2", "ajax", "saveOtherMsg_" + dm_error, (new Date() * 1 - _time)]);
+                        if (dm_error === 0) {
+                            // Base.jumpHref(url);
+                            window.setTimeout(function () {
+                                Base.jumpHref(url);
+                            }, 300);
+                        } else if (dm_error === 1099010012) {
+                            Base.alertShow("登录已过期，请在<br/>设置中退出并重新登录");
+                        } else if (dm_error === 1099010015) {
+                            Base.alertShow(error_msg);
+                        } else {
+                            Base.alertShow(error_msg);
+                        }
+                    },
+                    error: function () {
+                        _czc && _czc.push(["_trackEvent", "economy2_data2", "ajax", "saveOtherMsg_error", (new Date() * 1 - _time)]);
+                        Base.loading.hide();
+                        Base.alertShow("网络错误，请退出重试");
+                    }
+                });
+            },
+            // 提交申请信息
+            submitMsg: function () {
+                var that = this,
+                    _time = new Date() * 1,
+                    _pic = that.photo_list.join(","),
+                    _info = that.info.val().trim(),
+                    _price = that.price.val().trim().replace("元/场", "");
+
+                if (that.photo_list.length <= 2) {
+                    Base.alertShow("请至少上传三张个人靓照");
+                    return;
+                }
+
+                if (!that.tag_html || !that.language_html) {
+                    Base.alertShow("请填写完整的个人信息");
+                    return;
+                }
+
+                if (!that.user_info.realname) {
+                    Base.alertShow("请完成支付宝实名认证");
+                    return;
+                }
+
+                if(!that.user_info.collection){
+                    Base.alertShow("请填写收款支付宝");
+                    return;
+                }
+
+                // 银行卡修改为 非必填 2017-8-4
+//                if (!that.user_info.bcard || !that.user_info.bank || !that.user_info.branch || !that.user_info.cardprovince || !that.user_info.cardcity) {
+//                    Base.alertShow("请填写完整的银行账号信息");
+//                    return;
+//                }
+
+                if (!_info) {
+                    Base.alertShow("请填写正确的个人简介");
+                    return;
+                }
+
+                if (!/^\d{0,12}$/.test(_price)) {
+                    Base.alertShow("请填写正确的邀约费用");
+                    return;
+                }
+
+                that.user_info.pic = _pic;
+                that.user_info.price = _price * 100;
+                that.user_info.info = _info;
+
+                Base.confirm("申请资料将提交平台审核，<br/>审核中不可修改，是否提交？", function () {
+                    Base.loading.show();
+                    // 提交申请信息
+                    Common.ajax({
+                        host: Base.apiHost(),
+                        url: "/app/enter_user_info",
+                        data: that.user_info,
+                        success: function (res) {
+                            Base.loading.hide();
+                            // console.log("提交申请信息：", res);
+                            var data = res.data,
+                                dm_error = res.dm_error,
+                                error_msg = res.error_msg;
+                            _czc && _czc.push(["_trackEvent", "economy2_data2", "ajax", "submitMsg_" + dm_error, (new Date() * 1 - _time)]);
+                            if (dm_error === 0) {
+                                if (that.user_info.status === 1) {
+                                    Base.jumpHref("index.html");
+                                } else {
+                                    Base.jumpHref("task2.html");
+                                }
+                                switch (data.status) {
+                                    case 0:
+                                        that.btn_f.off("click");
+                                        break;
+                                    case 1:
+                                        break;
+                                    case 2:
+                                        break;
+                                    case 3:
+                                        that.btn_f.off("click");
+                                        break;
+                                    default:
+                                    // console.log(data.status);
+                                }
+                            } else if (dm_error === 1099010012) {
+                                Base.alertShow("登录已过期，请在<br/>设置中退出并重新登录");
+                            } else if (dm_error === 1099010015) {
+                                Base.alertShow(error_msg);
+                            } else {
+                                Base.alertShow(error_msg);
+                            }
+                        },
+                        error: function () {
+                            _czc && _czc.push(["_trackEvent", "economy2_data2", "ajax", "submitMsg_error", (new Date() * 1 - _time)]);
+                            Base.loading.hide();
+                            Base.alertShow("网络错误，请退出重试");
+                        }
+                    });
+                });
+            },
+            // 判断上传照片数量
+            photoFun: function () {
+                var that = this,
+                    $photo_li = that.photo.find("li"),
+                    _length = $photo_li.length;
+                if (_length >= 7) {
+                    that.upload_li.removeClass("show");
+                } else {
+                    if (!that.upload_li.hasClass("show")) {
+                        that.upload_li.addClass("show");
+                    }
+                }
+            },
+            // 判断信息输入是否完整
+            judgeIpt: function () {
+                var that = this;
+
+                if (that.info.val().trim() && that.photo_list.length) {
+                    that.btn_f.addClass("btn-t").off("click").on("click", function () {
+                        that.submitMsg();
+                    });
+                } else {
+                    that.btn_f.removeClass("btn-t").off("click");
+                }
+            },
+            // 上传图片
+            upload: function () {
+                var that = this;
+                UploadFile({
+                    $ipt: $(".upload-ipt"),
+                    $preview: $(".js-show-img"), // 预览元素
+                    $previewFE: $(".js-show-img-fe"), // 预览元素
+                    $iptHide: $(".js-img-url"), // 隐藏域
+                    $loading: $("#loading"), // loading 元素
+                    maxSize: 8192, // 最大存储 单位K
+                    uri: "https://openact.busi.inke.cn/newyear_posters/upload_image", // 上传URI
+                    onSelectSuccess: function () {
+                        Base.loading.show();
+                    }, // 选择文件 成功事件
+                    onSelectFail: function () {
+                    }, // 选择文件 失败事件
+                    onPreview: function () {
+                    }, // 预览 事件
+                    onUploadSuccess: function (res) {
+                        if (res.error_code === 0) {
+                            $("<li class=\"li-img\" style=\"background:url(" + res.data.image.url + ") no-repeat center;background-size:100% auto;border:1px solid #ccc;\"><button class=\"del\" style=\"background:url(//img2.inke.cn/MTQ5MzcwOTY0MzU0NiM3MjYjanBn.jpg) no-repeat center;background-size:100% 100%;\"></button></li>").insertBefore(that.upload_li);
+                            that.photo_list.push(res.data.image.url);
+                            that.photoFun();
+                            that.judgeIpt();
+                        }
+                    }, // 上传成功
+                    onUploadError: function () {
+                        Base.alertShow("上传失败，请重新上传");
+                    } // 上传失败
+                });
+            },
+            log: function (click_id, callback) {  //  埋点
+                Common.log({
+                    busi_code: "economy2",
+                    page_code: "data2",
+                    other: {
+                        click_id: click_id
+                    },
+                    callback: callback
+                });
+            }
+        };
+
+        $(function () {
+            Page.init();
+        });
+
+    </script>
+</html>

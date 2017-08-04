@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="映客,映客直播,映客app,映客官网,直播,明星直播,映客下载,映客直播下载,映客app下载,视频交友,全民直播,美女直播,高颜值直播" />
+    <meta name="description" content="映客直播,实时、高清、快捷、流畅的视频直播平台,中国全新的视频社交媒体,明星大咖、网络红人、时尚娱乐、高颜值、视频交友等尽在映客直播app" />
+    <title>我的收入</title>
+    <link type="image/x-icon" rel="shortcut icon" href="https://act.inke.cn/common/favicon.ico">
+    <script>
+        var rem = { baseRem: 20, baseWidth: 375, rootEle: document.getElementsByTagName('html')[0], initHandle: function() { this.setRemHandle(); this.resizeHandle(); }, setRemHandle: function() { var clientWidth = document.documentElement.clientWidth; this.rootEle.style.fontSize = clientWidth * this.baseRem / this.baseWidth + "px"; }, resizeHandle: function() { var that = this; window.addEventListener("resize", function() { setTimeout(function() { that.setRemHandle(); }, 300); }); } }; rem.initHandle();
+    </script>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+        .income-money {
+            background: #fff;
+            padding: 1.4rem 0;
+            display: block;
+            text-align: center;
+        }
+        .income-con {
+            font-size: 0.7rem;
+            color: #8D8E8E;
+            line-height: 0.7rem;
+        }
+        .money {
+            font-size: 2rem;
+            color: #FF9116;
+            line-height: 2rem;
+            padding-top: 0.57rem;
+            font-weight: bold;
+        }
+        .income-list {
+            background: #fff;
+            margin-top: 0.4rem;
+            display: block;
+        }
+        .income-list li {
+            display: block;
+            font-size: 0.75rem;
+            color: #333333;
+            line-height: 2.35rem;
+            padding: 0 0.8rem;
+            background: #FFFFFF;
+            box-shadow: inset 0 -1px 0 0 rgba(229,229,229,0.50);
+        }
+        .income-list li span {
+            display: inline-block;
+            float: right;
+        }
+        .income-list li a {
+            display: block;
+            color: #333;
+        }
+        .income-no {
+            display: none;
+            text-align: center;
+        }
+        .income-no i {
+            width: 6.75rem;
+            height: 5.32rem;
+            display: block;
+            background-size: 100%;
+            background-image: url('http://img2.inke.cn/MTUwMTQ4NDI4OTY2NSM5NzcjanBn.jpg');
+            background-repeat: no-repeat;
+            margin: 5rem auto 0;
+        }
+        .income-no span {
+            display: block;
+            font-size: 0.75rem;
+            color: #666666;
+            letter-spacing: 0;
+            line-height: 0.75rem;
+            padding-top: 2.4rem;
+        }
+    </style>
+</head>
+
+<body>
+<main id="wrapper">
+    <div class="income-yes">
+        <section class="income-money">
+            <p class="income-con">累计收入(元)</p>
+            <h3 class="money"></h3>
+        </section>
+        <section class="income-list">
+            <ul id="list" >
+            </ul>
+        </section>
+    </div>
+    <section class="income-no">
+        <i></i>
+        <span>您暂时还没有任务收入</span>
+    </section>
+</main>
+
+
+<section id="loading">
+    <p><span></span></p>
+</section>
+<script src="https://act.inke.cn/common/zepto.min.js"></script>
+<script src="./js/common-s.js"></script>
+<script src="./js/base.js"></script>
+<script>
+
+var Page = {
+    isLoading: false,
+    top: 0,
+    createtime :'',
+    fee : '',
+    html : '',
+    list: $('#list'),
+    incomeYes: $('.income-yes'),
+    incomeNo: $('.income-no'),
+    total : '',
+    id : '',
+    p : '1',
+    rows: 10,
+    nextData: true,  // 下一页有数据
+    init: function(){
+        window.addEventListener('scroll', this.scrollHander );
+        this.getListDate();
+        this.scrollHanderFunc = this.scrollHander();
+        window.addEventListener('click', this.scrollHanderFunc);
+    },
+    scrollHander: function(  ){
+        var self = this;
+        return function(){
+            if( !self.nextData || self.isLoading){return;}
+            var newtop = document.body.scrollTop || document.documentElement.scrollTop;
+            var sH = document.body.scrollHeight;
+            var iH = window.innerHeight;
+            if( self.top <  newtop && newtop + iH > sH - 20  ){
+                self.p = 1*self.p+1;
+                self.getListDate();
+            }
+            self.top = newtop;
+        }
+    },
+    // 获Get取参数
+    getGetParams: function(){
+        return {
+            v: '201708',
+            p: this.p,
+            rows: this.rows
+        }
+    },
+    // 检测list高度大于窗口高度
+    screenHeight: function(){
+        var listHei = $('#wrapper').height();
+        var iH = window.innerHeight;
+
+        return listHei > iH ;
+    },
+    getListDate: function(){
+        var self = this;
+        var params = this.getGetParams();
+        this.isLoading = true;
+        Common.ajax({
+            url: "/app/get_media_feeflow",
+            type: 'get',
+            data: params,
+            success:function(data) {
+                data = data;
+                var html = '';
+                var len = data.data.list.length;
+                for(var i=0; i< len; i++) {
+                    html += '<li><a href="'+ Base.href('./income-details.html') +'&id=' +data.data.list[i].id+' ">' + data.data.list[i].createtime + '<span>' + data.data.list[i].fee + '元' + '</span></a></li>';
+                };
+
+                self.list.html( self.list.html() + html );
+                $('.money').html(data.data.total);
+
+
+                self.isLoading = false;
+                self.nextData =  !(len < self.rows);
+                if( !self.screenHeight() && self.nextData ){
+                    self.p =   1*self.p + 1;
+                    self.getListDate();
+                }
+
+                if( self.p == 1 && len == 0 ){
+                    self.incomeNo.show();
+                    self.incomeYes.hide();
+                }
+            },
+            error: function () {
+                _czc && _czc.push(["_trackEvent", "economy2_myself2", "ajax", "initData_error", (new Date() * 1 - _time)]);
+                Base.loading.hide();
+                Base.alertShow("网络错误，请退出重试");
+            }
+        });
+
+    }
+}
+
+$(function(){
+    Page.init();
+})
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+<div style="display:none;"><script src="https://s95.cnzz.com/z_stat.php?id=1261919673&web_id=1261919673" language="JavaScript"></script></div>
+</html>
